@@ -1,0 +1,54 @@
+.table {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin:0;
+    padding:0;
+    border-collapse: collapse;
+    tbody {
+        position: relative;
+        width: 100%;
+        height: auto;
+        tr {
+            position: relative;
+            width: 100%;
+            height: auto;
+            padding: @layout_padding;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            &:first-of-type(even) {
+                background: @gray_lite;
+            }
+            td {
+                position: relative;
+                padding: @layout_padding 0;
+                text-align: center;
+            }
+        }
+    }
+    thead {
+        position: relative;
+        width: 100%;
+        height: auto;
+        background: @gray_lite;
+        border-bottom: 0.2rem solid darken(@gray_lite, 4);
+    }
+        tr {
+            position: relative;
+            width: 100%;
+            height: auto;
+            padding: @layout_padding;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            th {
+                position: relative;
+                padding: @layout_padding 0;
+                font-weight: bold;
+                color: darken(@gray_lite, 8);
+            }
+    }        
+}

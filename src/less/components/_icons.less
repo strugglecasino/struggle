@@ -1,0 +1,44 @@
+.icon  {
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: inherit;
+    font-size: normal;
+    height: 1rem;
+    position: relative;
+    text-indent: -999rem;
+    vertical-align: middle;
+    width: 1rem;
+    &::before,
+    &::after {
+        display: block;
+        left: 50%;
+        position: absolute;
+        top:50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.icon_btc,
+.icon_bell,
+.icon_paperplan,
+.icon_user,
+.icon_roll_lo,
+.icon_roll_hi,
+.icon_wallet,
+.icon_eye,
+.icon_eye_closed,
+.icon_chat,
+.icon_chat_closed,
+.icon_x,
+.icon_robot,
+.icon_pourcent {
+    &::before {
+        border: 0.1rem solid transparent;
+        border-bottom: 0;
+        border-right: 0;
+        content: "";
+        height: .65rem;
+        transform: translate(-25%, -50%) rotate(-45deg);
+        width: .65rem;
+    }
+}

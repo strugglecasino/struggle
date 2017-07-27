@@ -1,0 +1,51 @@
+.dropdown {
+    display: inline-block;
+    position: relative;
+
+
+    .menu {
+        animation: drop_down .2s ease 1;
+        display: none;
+        left: auto;
+        right: 0;
+        position: absolute;
+        top:2.2rem;
+        .open {
+            display: block;
+            z-index: 999;
+        }
+   li {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 0.2rem;
+        border: 2px solid #ddd;
+        &:first-child {
+            border-bottom: none;
+        }
+
+        a  {
+            position: relative;
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 80%;
+            text-decoration: none;
+            color: #ddd;
+        }
+    }
+    
+
+    #chevron_down  {
+        &:before {
+            content: '/&#x25BC;';
+        }
+    }
+}
+}
+
+    .open {
+        display: block;
+    }
