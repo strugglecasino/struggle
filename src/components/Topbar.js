@@ -1,14 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const Topbar = ({ userList }) => {
-    return (
-        <section className="topbar">
-            {/*
-                Object.keys(userList).length + ' '
-            */}
-            <span> users online 0</span>
-        </section>
-    );
+const mapStateToProps = state => ({
+    userList: state.chat.userList
+});
+
+class Topbar extends Component {
+    render() {
+    let { userList } = this.props;
+        return (
+            <section className="topbar">
+                <div className="btc_price">
+                    BTC / USD 
+                    <span>
+                        $2800
+                    </span>
+                </div>
+                <div className="users_info">
+                 USERS ONLINE
+                <span>
+                {
+                    Object.keys(userList).length + ' '
+                }
+                </span>
+            </div>
+            </section>
+        )
+    }
 }
 
-export default Topbar;
+export default connect(mapStateToProps)(Topbar);

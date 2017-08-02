@@ -2,8 +2,7 @@ import React from 'react';
 import config from './config';
 import _ from 'lodash';
 
-
-
+/* eslint-disable */
 
 export function genUuid() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {

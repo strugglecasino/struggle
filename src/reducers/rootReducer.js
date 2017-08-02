@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import chatReducer from './chatReducer';
-import betReducer from './betReducer';
-import worldReducer from './worldReducer';
+import chat from './chat/';
+import world from './world/';
+import bet from './bet/';
 
 const rootReducer = combineReducers({
-   worldStore: worldReducer,
-   chatStore: chatReducer,
-   betStore:  betReducer
+   chat,
+   world,
+   bet
 });
 
 export default rootReducer;

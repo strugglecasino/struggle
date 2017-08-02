@@ -2,27 +2,24 @@ import config from '../utils/config';
 import _ from 'lodash';
 import $ from 'jquery';
 
-export const MoneyPot = (function() {
 
-  let o = {};
-
-  o.apiVersion = 'v1';
+let apiVersion = 'v1';
 
   // method: 'GET' | 'POST' | ...
   // endpoint: '/tokens/abcd-efgh-...'
-  var noop = function() {};
-  var makeMPRequest = function(method, bodyParams, endpoint, callbacks, overrideOpts) {
+let noop = function() {};
+let makeMPRequest = function(method, bodyParams, endpoint, callbacks, overrideOpts) {
 /*
     if (!worldStore.state.accessToken)
       throw new Error('Must have accessToken set to call MoneyPot API');
 */
-    var url = config.mp_api_uri + '/' + o.apiVersion + endpoint;
+let url = config.mp_api_uri + '/' + apiVersion + endpoint;
 /*
     if (worldStore.state.accessToken) {
       url = url + '?access_token=' + worldStore.state.accessToken;
     }
 */
-    var ajaxOpts = {
+let ajaxOpts = {
       url:      url,
       dataType: 'json', // data type of response
       method:   method,
@@ -39,9 +36,11 @@ export const MoneyPot = (function() {
     };
 
     $.ajax(_.merge({}, ajaxOpts, overrideOpts || {}));
-  };
+};
 
-  o.listBets = function(callbacks) {
+
+
+export function listBets(callbacks) {
     var endpoint = '/list-bets';
     makeMPRequest('GET', undefined, endpoint, callbacks, {
       data: {
@@ -51,17 +50,17 @@ export const MoneyPot = (function() {
     });
   };
 
-  o.getTokenInfo = function(callbacks) {
+ export function getTokenInfo(callbacks) {
     var endpoint = '/token';
     makeMPRequest('GET', undefined, endpoint, callbacks);
   };
 
-  o.generateBetHash = function(callbacks) {
+ export function generateBetHash(callbacks) {
     var endpoint = '/hashes';
     makeMPRequest('POST', undefined, endpoint, callbacks);
   };
 
-  o.getDepositAddress = function(callbacks) {
+export function  getDepositAddress(callbacks) {
     var endpoint = '/deposit-address';
     makeMPRequest('GET', undefined, endpoint, callbacks);
   };
@@ -73,10 +72,7 @@ export const MoneyPot = (function() {
   // - cond: '<' | '>'
   // - number: Int in range [0, 99.99] that cond applies to
   // - payout: how many satoshis to pay out total on win (wager * multiplier)
-  o.placeSimpleDiceBet = function(bodyParams, callbacks) {
+ export function placeSimpleDiceBet(bodyParams, callbacks) {
     var endpoint = '/bets/simple-dice';
     makeMPRequest('POST', bodyParams, endpoint, callbacks);
   };
-
-  return o;
-})();

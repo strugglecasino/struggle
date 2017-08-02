@@ -1,0 +1,13 @@
+export const UPDATE_USER = 'UPDATE_USER';
+export const USER_LOGIN = 'USER_LOGIN';
+export const USER_LOGOUT = 'USER_LOGOUT';
+export const START_LOADING = 'START_LOADING';
+export const STOP_LOADING = 'STOP_LOADING';
+export const CHANGE_TAB = 'CHANGE_TAB';
+export const NEW_BET = 'NEW_BET';
+export const NEW_ALL_BET = 'NEW_ALL_BETS';
+export const INIT_ALL_BETS = 'INIT_ALL_BETS';
+export const TOGGLE_HOTKEYS = 'TOGGLE_HOTKEYS';
+export const DISABLE_HOTKEYS = 'DISABLE_HOTKEYS';
+export const START_REFRESHING_USER = 'START_REFRESHING_USER';
+export const STOP_REFRESHING_USER = 'STOP_REFRESHING_USER';

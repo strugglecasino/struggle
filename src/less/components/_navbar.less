@@ -7,7 +7,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom:0.2rem solid @gray_lite;
+    border-bottom:0.2rem solid darken(@gray_lite, 8);
 
     .navbar_center {
         img {
@@ -17,5 +17,68 @@
     .navbar_side {
         position: relative;
         margin:0 5rem;
+
+
+        .balance {
+            position: relative;
+            width: 16rem;
+            height: auto;
+            background: @accent_shadow;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0.5rem;
+            padding: @layout_padding;
+            box-shadow: 0 0.3rem 0 0 darken(@accent_shadow, 17), 0 -0.1rem 0 0 darken(@gray_lite, 18);
+            span {
+                position: relative;
+                display: flex;
+                justify-content: flex-start;
+                left: 1.5rem;
+                align-items: center;
+                font-size: 120%;
+                color: @gray_lite;
+                height: 100%;
+                width: 100%;
+                font-family: Roboto Mono, monospace;
+                span:first-child {
+                    font-size: 90%;
+                    font-family: Monserrat, sans-serif;
+                    letter-spacing: 0.3rem;
+
+                }
+
+            }
+            .pending {
+            position: absolute;
+            left: 18rem;
+            color: @danger_color;
+            font-weight: bold;
+            font-family: Roboto Mono, monospace;
+            font-size: 120%;
+            span {
+                font-family: Monserrat, sans-serif;
+                color: @font_gray;
+                font-weight: 400;
+                letter-spacing: 0.1rem;
+                text-indent: -0.8rem;
+            }
+            }
+
+            button {
+                position: relative;
+                cursor: pointer;
+                &:active {
+                    animation-name: refresh_spin;
+                    animation-duration: 0.3s;
+                    animation-iteration-count: 2;
+                    animation-timing-function: transform 0.3s ease;
+                }
+            }
+            img {
+                width: 2.6rem;
+            }
+        }
     }
 }

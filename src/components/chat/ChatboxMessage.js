@@ -1,12 +1,11 @@
 import React from 'react';
-import { formatDateToTime, roleToLabelElement } from '../../utils/helpers';
+import * as helpers from '../../utils/helpers';
 
 const ChatboxMessage = ({ m }) => {
     return (
-        <li key={m.id}>
-            <span>{ formatDateToTime(m.created_at) }</span>
-            <span> { roleToLabelElement(m.user.role) }</span>
-            <span> { m.text } </span>
+        <li>
+            <span id="user"> { helpers.formatDateToTime(m.created_at) } </span>
+            <span> { m.uname } </span>
         </li>
     );
 }

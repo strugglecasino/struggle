@@ -1,51 +1,59 @@
 .dropdown {
     display: inline-block;
     position: relative;
+    width: 14rem;
 
-
+    .dropdown_toggle {
+        cursor: pointer;
+        font-weight: bold;
+        color: @accent_color_base;
+        font-size: 110%;
+        margin:0 auto;
+        position: relative;
+        width: 100%;
+        height: auto;
+        &:hover {
+            color: lighten(@accent_color_base, 13);
+        }
+    }
     .menu {
         animation: drop_down .2s ease 1;
         display: none;
         left: auto;
         right: 0;
         position: absolute;
-        top:2.2rem;
-        .open {
-            display: block;
-            z-index: 999;
-        }
+        top:4.89rem;
+        background: #fff;
+        width: 100%;
    li {
         position: relative;
         width: 100%;
         height: auto;
-        padding: 0.2rem;
-        border: 2px solid #ddd;
+        border: 0.2rem solid darken(@gray_lite, 8);
+        text-align: center;
+        background: #fff;
         &:first-child {
             border-bottom: none;
         }
-
-        a  {
+        &:last-child {
+            border-top: none;
+        }
+        button {
+            color: darken(@gray_lite, 12);
+            font-weight: bold;
+            cursor: pointer;
             position: relative;
+            padding: @layout_padding_lg;
             width: 100%;
-            height: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 80%;
-            text-decoration: none;
-            color: #ddd;
-        }
-    }
-    
-
-    #chevron_down  {
-        &:before {
-            content: '/&#x25BC;';
+            &:hover {
+                color: @accent_color_base;
+            }
         }
     }
 }
-}
 
-    .open {
+.open {
         display: block;
-    }
+        z-index: 999;
+ }
+}

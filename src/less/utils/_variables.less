@@ -14,9 +14,13 @@
 // colors
 
 @gray_lite: #f4f2fc;
+@lite_shadow: #e4e2ed;
+@font_gray: darken(@lite_shadow, 12);
 @accent_color_base: #7c5cd1;
-@accent_spin: spin(@accent_color_base, 90);
-@success_color: spin(@accent_color_base, 216);
+@accent_shadow: #5f4daa;
+@accent_spin: spin(@accent_color_base, 96);
+@danger_color: lighten(@accent_spin, 6);
+@success_color: spin(@accent_color_base, 248);
 
 
 
@@ -26,5 +30,5 @@
 @size-sm: 600px;
 @size-md: 840px;
 @size-lg: 960px;
-@size-xl: 1280px;
+@size-xl: 980px;
 @size-2x: 1440px;

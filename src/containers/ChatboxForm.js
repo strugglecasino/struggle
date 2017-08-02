@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
-import store from '../../stores/configureStore';
-import { sendMessage } from '../../actions/chatActions';
-import  paperplane   from '../../icons/icon_paperplane.svg';
+import { connect } from 'react-redux';
+import { sendMessage } from '../actions/chat/';
+import  paperplane   from '../icons/icon_paperplane.svg';
+
+const mapStateToProps = state => ({
+    chat: state.chat,
+    world: state.world
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    sendMessage: (text) => dispatch(sendMessage(text))
+});
 
 
 class ChatboxForm extends Component {
@@ -19,15 +28,20 @@ class ChatboxForm extends Component {
         this.setState({text: e.target.value});
     }
     onSend(){
-        store.dispatch(sendMessage());
+        this.props.sendMessage({text: this.state.text});
         this.setState({text: ''});
     }
     onKeyPress(e) {
         let ENTER = 13;
         if (e.which === ENTER ) {
             if (this.state.text.trim().length > 0) {
-                this.onSubmit();
+                this.onSend();
             }
+        }
+    }
+    onfocus() {
+        if(this.props.chat.hotkeysEnabled) {
+            this.props.world.hotkeysEnabled = !this.props.world.hotkeysEnabled;
         }
     }
     render() {
@@ -41,7 +55,7 @@ class ChatboxForm extends Component {
                  onFocus={this.onFocus}
                  ref='input'
                 />
-                <button type='submit' onSubmit={this.onSend}>        
+                <button type='submit' onClick={this.onSend}>        
                     <img src={paperplane} alt="send"/>
                 </button>
             </section>
@@ -50,4 +64,4 @@ class ChatboxForm extends Component {
 }
 
 
-export default ChatboxForm;
+export default connect(mapStateToProps, mapDispatchToProps)(ChatboxForm);

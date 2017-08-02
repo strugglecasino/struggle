@@ -8,8 +8,8 @@ const config = {
   debug: isRunningLocally(),
   force_https_redirect: !isRunningLocally(),
   house_edge: 0.01,
-  chat_buffer_size: 75,
-  bet_buffer_size: 25
+  chat_buffer_size: 5,
+  bet_buffer_size: 5
 };
 
 (function() {

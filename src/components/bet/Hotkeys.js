@@ -1,4 +1,5 @@
 import React from 'react';
+import store from '../../stores/';
 
 const Hotkeys = ({ toggleHotkeys, hotkeysEnabled }) => {
     return (

@@ -1,25 +1,14 @@
 import React, { Component } from 'react';
-import store from '../stores/configureStore';
-
 
 /* eslint-disable */
 
-class DropDown extends Component {
+class Dropdown extends Component {
     constructor(props){
         super(props);
         this.state = {
             isOpen: false
         }
         this.dropDownToggle = this.dropDownToggle.bind(this);
-        this.logout = this.logout.bind(this);
-    }
-    componentDidMount(){
-        this.unsubscribe = store.subscribe(() => {
-            this.forceUpdate();
-        })
-    }
-    componentWillUnmount(){
-        this.unsubscribe();
     }
     dropDownToggle(){
         if(this.state.isOpen) {
@@ -28,10 +17,8 @@ class DropDown extends Component {
             this.setState({isOpen: true});
         }
     }
-    logout() {
-        store.dispatch(logout({type: 'USER_LOGOUT'}));
-    }
     render(){
+        let { world, userLogout, openWithdrawPopUp, openDepositPopUp } = this.props;
         let dropDownMenuClass = 'menu';
         if(this.state.isOpen) {
             dropDownMenuClass += ' open';
@@ -39,11 +26,23 @@ class DropDown extends Component {
         return (
             <section className='dropdown'>
                 <button className="dropdown_toggle" onClick={this.dropDownToggle}>
-                    username
+                    { world.user.uname } 
                 </button>
                 <ul className={dropDownMenuClass}>
                     <li>
-                        <button onClick={this.logout}> LOGOUT </button>
+                        <button onClick={openDepositPopUp}> 
+                            DEPOSIT
+                        </button>
+                    </li>
+                    <li>
+                        <button onClick={openWithdrawPopUp}>
+                            CASHOUT
+                        </button>
+                    </li>
+                    <li>
+                        <button onClick={userLogout}> 
+                            LOGOUT 
+                        </button>
                     </li>
                 </ul>
             </section>
@@ -51,4 +50,4 @@ class DropDown extends Component {
     }
 }
 
-export default DropDown;
+export default Dropdown;
