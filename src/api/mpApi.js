@@ -1,24 +1,54 @@
 import config from '../utils/config';
+import * as helpers from '../utils/helpers';
 import _ from 'lodash';
 import $ from 'jquery';
 
 
-let apiVersion = 'v1';
 
-  // method: 'GET' | 'POST' | ...
-  // endpoint: '/tokens/abcd-efgh-...'
+let access_token, expires_in, expires_at;
+
+if (helpers.getHashParams().access_token) {
+  console.log('[token manager] access_token in hash params');
+  access_token = helpers.getHashParams().access_token;
+  expires_in = helpers.getHashParams().expires_in;
+  expires_at = new Date(Date.now() + (expires_in * 1000));
+
+  localStorage.setItem('access_token', access_token);
+  localStorage.setItem('expires_at', expires_at);
+} else if (localStorage.access_token) {
+  console.log('[token manager] access_token in localStorage');
+  expires_at = localStorage.expires_at;
+  // Only get access_token from localStorage if it expires
+  // in a week or more. access_tokens are valid for two weeks
+  if (expires_at && new Date(expires_at) > new Date(Date.now() + (1000 * 60 * 60 * 24 * 7))) {
+    access_token = localStorage.access_token;
+  } else {
+    localStorage.removeItem('expires_at');
+    localStorage.removeItem('access_token');
+  }
+} else {
+  console.log('[token manager] no access token');
+}
+
+// Scrub fragment params from url.
+if (window.history && window.history.replaceState) {
+  window.history.replaceState({}, document.title, "/");
+} else {
+  // For browsers that don't support html5 history api, just do it the old
+  // fashioned way that leaves a trailing '#' in the url
+  window.location.hash = '#';
+}
+
+
+
+const apiVersion = 'v1';
+
+
 let noop = function() {};
 let makeMPRequest = function(method, bodyParams, endpoint, callbacks, overrideOpts) {
-/*
-    if (!worldStore.state.accessToken)
-      throw new Error('Must have accessToken set to call MoneyPot API');
-*/
+
 let url = config.mp_api_uri + '/' + apiVersion + endpoint;
-/*
-    if (worldStore.state.accessToken) {
-      url = url + '?access_token=' + worldStore.state.accessToken;
-    }
-*/
+
 let ajaxOpts = {
       url:      url,
       dataType: 'json', // data type of response
@@ -40,30 +70,30 @@ let ajaxOpts = {
 
 
 
-export function listBets(callbacks) {
-    var endpoint = '/list-bets';
+export const listBets = (callbacks) => {
+    let endpoint = '/list-bets';
     makeMPRequest('GET', undefined, endpoint, callbacks, {
       data: {
         app_id: config.app_id,
         limit: config.bet_buffer_size
       }
     });
-  };
+};
 
- export function getTokenInfo(callbacks) {
-    var endpoint = '/token';
+export const getTokenInfo = (callbacks) => {
+    let endpoint = '/token';
     makeMPRequest('GET', undefined, endpoint, callbacks);
-  };
+};
 
- export function generateBetHash(callbacks) {
-    var endpoint = '/hashes';
+ export const generateBetHash = (callbacks) => {
+    let endpoint = '/hashes';
     makeMPRequest('POST', undefined, endpoint, callbacks);
-  };
+};
 
-export function  getDepositAddress(callbacks) {
+export const getDepositAddress = (callbacks) => {
     var endpoint = '/deposit-address';
     makeMPRequest('GET', undefined, endpoint, callbacks);
-  };
+};
 
   // bodyParams is an object:
   // - wager: Int in satoshis
@@ -72,7 +102,7 @@ export function  getDepositAddress(callbacks) {
   // - cond: '<' | '>'
   // - number: Int in range [0, 99.99] that cond applies to
   // - payout: how many satoshis to pay out total on win (wager * multiplier)
- export function placeSimpleDiceBet(bodyParams, callbacks) {
-    var endpoint = '/bets/simple-dice';
+ export const placeSimpleDiceBet = (bodyParams, callbacks) => {
+    let endpoint = '/bets/simple-dice';
     makeMPRequest('POST', bodyParams, endpoint, callbacks);
-  };
+};

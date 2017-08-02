@@ -1,6 +1,7 @@
 import React from 'react';
+import BetRow from './BetRow';
 
-const MyBetsTab = (props) => {
+const MyBetsTab = ({bet, world, }) => {
     return (
         <table className="table">
             <thead>
@@ -9,27 +10,13 @@ const MyBetsTab = (props) => {
                     <th> TIME </th>
                     <th> USER </th>
                     <th> BET </th>
+                    <th> TARGET </th>
+                    <th> ROLL </th>
                     <th> PROFIT </th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        4857483
-                    </td>
-                    <td>
-                        14:34 
-                    </td>
-                    <td>
-                        <a href="#"> FOKUFF </a>
-                    </td>
-                    <td>
-                        120 bits
-                    </td>
-                    <td>
-                        -120 bits
-                    </td>
-                </tr>
+
             </tbody>
         </table>
     );

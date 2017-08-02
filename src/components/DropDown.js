@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import chevron from '../icons/icon_chevron.svg';
 
 /* eslint-disable */
 
@@ -26,7 +27,7 @@ class Dropdown extends Component {
         return (
             <section className='dropdown'>
                 <button className="dropdown_toggle" onClick={this.dropDownToggle}>
-                    { world.user.uname } 
+                    { world.user.uname + ' ' }  <img src={chevron} alt="chevron"/>
                 </button>
                 <ul className={dropDownMenuClass}>
                     <li>

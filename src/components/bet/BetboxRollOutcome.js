@@ -12,16 +12,17 @@ class BetboxRollOutcome extends Component {
         }
         return (
             <section className="betbox_roll_outcome">
-                <span className={rollClass} > { world.bets.toArray().map((bet) => { <span> { bet.outcome } </span>})} </span>
-                    {
-                        world.bets.toArray().map((bet) => {
-                            <ul key={bet} bet={world.allBets}>
-                                <li>
-                                    { bet.outcome }
-                                </li>
-                            </ul>
-                        })
-                    }
+                <span className={rollClass} > 
+                    { !world.bets ? world.bets.toArray().map((bet) => { <span key={bet}> { bet.outcome } </span>})
+                    
+                    : <span className="default_roll"> 00.00 </span>
+                    } 
+                </span>
+                
+                        <ul className="previous_rolls">
+           
+                        </ul>
+                
             </section>
         );
     }

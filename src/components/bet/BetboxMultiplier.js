@@ -2,7 +2,7 @@ import React from 'react';
 import x from '../../icons/icon_x.svg';
 
 
-const BetboxMultiplier = ({multiplier, minMultiplier, halveMultiplier, doubleMultiplier, maxMultiplier, onMultiplierChange }) => {
+const BetboxMultiplier = ({multiplier, minMultiplier, halveMultiplier, doubleMultiplier, maxMultiplier, onChange }) => {
         return (
         <section className="betbox_multiplier">
             <span id="label"> MULTIPLIER </span>
@@ -12,8 +12,8 @@ const BetboxMultiplier = ({multiplier, minMultiplier, halveMultiplier, doubleMul
                 </div>
                     <input 
                      type="text"
-                     value={multiplier}
-                     onChange={onMultiplierChange}
+                     value={multiplier.str}
+                     onChange={e => (onChange(e.target.value))}
                      />
                  </div>
                    <div className="bet_btns">

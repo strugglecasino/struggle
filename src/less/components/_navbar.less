@@ -9,6 +9,22 @@
     align-items: center;
     border-bottom:0.2rem solid darken(@gray_lite, 8);
 
+    .toggle_button {
+        display: none;
+    }
+
+    @media all and(max-width: @size-lg){
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        justify-content: center;
+        align-items: space-between;
+        .toggle_button {
+            display: block;
+        }
+        
+    }
+
     .navbar_center {
         img {
             width: 22rem;
@@ -31,6 +47,10 @@
             border-radius: 0.5rem;
             padding: @layout_padding;
             box-shadow: 0 0.3rem 0 0 darken(@accent_shadow, 17), 0 -0.1rem 0 0 darken(@gray_lite, 18);
+
+            @media all and(max-width: @size-lg) {
+                float: left;
+            }
             span {
                 position: relative;
                 display: flex;

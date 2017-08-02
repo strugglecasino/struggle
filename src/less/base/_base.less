@@ -128,7 +128,7 @@ button, input {
     margin:0;
     padding:0;
     width: 69%;
-    height: calc(100vh - 20rem);
+    min-height: calc(100vh - 20rem);
     // media queries 
     @media all and(max-width: @size-xl) {
         width: 100%;
@@ -162,7 +162,7 @@ button, input {
     width: 100%;
     height: 50%;
 
-    .current_roll {
+    .current_roll, .default_roll {
         position: relative;
         display: flex;
         flex-direction: row;
@@ -170,8 +170,9 @@ button, input {
         align-items: center;
         width: 100%;
         height: auto;
-        padding: @layout_padding;
-        font-size: 500%;
+        margin:@layout_padding_lg auto;
+        padding: @layout_padding_lg;
+        font-size: 260%;
         font-family:  'PT Mono', monospace;
     }
     .win {
@@ -207,6 +208,7 @@ button, input {
     justify-content:center;
     align-items: flex-start;
     flex-wrap: wrap;
+    height: auto;
     #label {
         padding: @layout_padding;
         font-weight: bold;
@@ -267,13 +269,22 @@ button, input {
         position: relative;
         cursor: pointer;
         padding: @layout_padding_lg 2.8rem;
+        width: 12rem;
         border-radius: 0.5rem;
         background: @gray_lite;
         border: 0.2rem solid darken(@gray_lite, 8);
         font-weight: 700;
         color: darken(@gray_lite, 8);
         font-size: 115%;
-        margin: 0 4rem;
+        margin:  4rem;
+        kbd {
+            position: absolute;
+            color: @success_color;
+            font-size: 70%;
+            font-weight: 800;
+            right: 1.7rem;
+            top: 1.7rem;
+        }
     }
 }
 
@@ -289,12 +300,12 @@ button, input {
         border: 0.2rem solid darken(@gray_lite, 4);
         color: darken(@gray_lite, 4);
         font-weight: bold;
-        font-size: 96%;
+        font-size: 95%;
     }
     .active {
         border-color: @success_color;
         color:@success_color;
-        background: lighten(@success_color, 24);
+        background: lighten(@success_color, 28);
     }
 }
 
@@ -309,7 +320,7 @@ button, input {
     padding:0;
     width: 29%;
     min-width: 300px;
-    height: calc(100vh - 20rem);
+    min-height: calc(100vh - 20rem);
     border-left: 0.2rem solid darken(@gray_lite,8);
     float: right;
     @media all and(max-width: @size-xl) {
@@ -453,6 +464,7 @@ button, input {
     justify-content: flex-start;
     align-items: flex-start;
     transition: all 0.2s ease;
+    border-left: 0.2rem solid darken(@gray_lite, 9);
     li {
         position: relative;
         width: 100%;
@@ -460,6 +472,9 @@ button, input {
         padding:0;
         margin:0;
         border-bottom: 0.2rem solid darken(@gray_lite, 8);
+        &:hover a {
+            background: darken(@gray_lite,6);
+        }
         a {
             position: relative;
             padding: @layout_padding_lg;
@@ -467,6 +482,9 @@ button, input {
             width: 100%;
             justify-content: flex-start;
             align-items: center;
+            font-size: 110%;
+            font-weight: 600;
+            font-family: Monserrat, sans-serif;
         }
     }
 }

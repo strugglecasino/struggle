@@ -9,6 +9,9 @@ import Logo from '../struggle.svg';
 const Navbar = ({world, userLogout, openDepositPopUp, openWithdrawPopUp, refreshUser }) => {
         return (
         <section className="navbar">
+            <button className="toggle_button">
+                ☰
+            </button>
             <div className="navbar_side">
                 { world.user ? <BetboxBalance 
                                   balance={world.user.balance} 

@@ -5,9 +5,12 @@ import * as Actions from '../../actions/world';
 
 const initialState = {
     isLoading: true,
-    user: undefined,
-    hotkeysEnabled: false,
-    accessToken: '',
+    user: {
+        uname: 'es2thekay',
+        balance: '0'
+    },
+    hotkeysEnabled: true,
+    accessToken: '544',
     isRefreshingUser: false,
     currTab: 'ALL_BETS',
     bets: new CBuffer(config.bet_buffer_size),
@@ -29,23 +32,24 @@ export default function worldReducer(state = initialState, action) {
              user: undefined
          });
         case types.CHANGE_TAB:
-         return Object.assign({}, state, {
-             currTab: this.props.tabName
-         })
+
+         return state;
+
         case types.TOGGLE_HOTKEYS:
-         return Object.assign({}, state, {
-             hotkeysEnabled: !this.props.hotkeysEnabled
-         })  
-        
+
+         return Object.assign(state, {
+             hotkeysEnabled: false
+         });
+
         case types.DISABLE_HOTKEYS:
          return Object.assign({}, state, {
              hotkeysEnabled: false
          });
 
         case types.INIT_ALL_BETS:
-
+        
          return state;
-
+         
         case types.NEW_ALL_BET:
          return state;
 

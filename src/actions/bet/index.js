@@ -6,18 +6,21 @@ export const onWagerChange = (e) => ({
     str: e.target.value
 });
 
+
 export const onMultiplierChange = (e) => ({
     type: types.UPDATE_MULTIPLIER,
     str: e.target.value
 });
 
-export const setNextHash = (hexString) => ({
-     
+
+export const setNextHash = (hexString) => {
+    return {
         type: types.SET_NEXT_HASH,
         hexString
-});
+    };
+}
 
-export function minWager(min){
+export const minWager = (min) => {
     return {
         type: types.UPDATE_WAGER,
         min
@@ -75,10 +78,12 @@ export const minMultiplier = (min) => {
     }
 }
 
-export const updateWager = (newWager) => ({
-    type: types.UPDATE_WAGER,
-    newWager
-});
+export const updateWager = newWager => {
+    return {
+     type: types.UPDATE_WAGER,
+     newWager
+    };
+};
 
 export const updateMultiplier = (newMult) => {
     return {

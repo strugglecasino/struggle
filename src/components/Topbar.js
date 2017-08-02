@@ -1,13 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 
-const mapStateToProps = state => ({
-    userList: state.chat.userList
-});
-
-class Topbar extends Component {
-    render() {
-    let { userList } = this.props;
+const Topbar = ({userList}) => {
         return (
             <section className="topbar">
                 <div className="btc_price">
@@ -25,8 +18,7 @@ class Topbar extends Component {
                 </span>
             </div>
             </section>
-        )
-    }
+        );
 }
 
-export default connect(mapStateToProps)(Topbar);
+export default Topbar;

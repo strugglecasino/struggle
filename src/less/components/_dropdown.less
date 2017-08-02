@@ -7,14 +7,23 @@
         cursor: pointer;
         font-weight: bold;
         color: @accent_color_base;
-        font-size: 110%;
+        font-size: 120%;
+        font-family: Monserrat, sans-serif;
+        letter-spacing: 0.1rem;
         margin:0 auto;
         position: relative;
         width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
         height: auto;
+        img {
+            width: 2rem;
+        }
         &:hover {
             color: lighten(@accent_color_base, 13);
         }
+
     }
     .menu {
         animation: drop_down .2s ease 1;

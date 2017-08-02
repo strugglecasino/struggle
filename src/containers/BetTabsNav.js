@@ -10,18 +10,22 @@ const mapStateToProps = state => ({
 });
 
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => {
+    return {
     changeTab: (tabName) => dispatch(Actions.changeTab(tabName))
-});
+    };
+}
 
 class BetTabsNav extends Component {
     render() {
-        let { world, changeTab } = this.props;
+        let { world } = this.props;
         return (
             <ul className="bet_tabs_nav">
                 <li
                     className={ world.currTab === 'ALL_BETS' ? 'active' : '' }>
-                    <a href="javascript:void()" onClick={changeTab} > ALL BETS  </a>
+                    <a 
+                      href="javascript:void()"
+                       > ALL BETS  </a>
                 </li>
                 <li 
                    className={ world.currTab === 'MY_BETS' ? 'active' : '' }> 
@@ -36,4 +40,4 @@ class BetTabsNav extends Component {
 }
 
 
-export default connect(mapStateToProps)(BetTabsNav);
+export default connect(mapStateToProps, mapDispatchToProps)(BetTabsNav);

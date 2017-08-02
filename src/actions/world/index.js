@@ -18,7 +18,7 @@ export const userLogin = (user) => {
 export const userLogout = (user) => {
     return {
         type: types.USER_LOGOUT,
-        user
+        user: undefined
     }
 }
 
@@ -62,10 +62,12 @@ export const initAllBets = (bets) => {
     };
 }
 
-export function toggleHotkeys(){
+
+export const toggleHotkeys = (hotkeysEnabled) => { 
     return {
-        type: types.TOGGLE_HOTKEYS
-    }
+        type: types.TOGGLE_HOTKEYS,
+        hotkeysEnalbed: !hotkeysEnabled
+    };
 }
 
 export const disableHotkeys = () => {

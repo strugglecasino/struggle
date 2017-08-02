@@ -11,7 +11,8 @@ const ChatboxUserList = ({userList}) => {
                     return (
                         <li key={u.uname}>
                            <a href={config.mp_browser_uri + '/' + u.uname }> 
-                           { helpers.roleToLabelElement(u.role) + ' ' + u.uname } </a>
+                           { helpers.roleToLabelElement(u.role) + ' ' + u.uname } 
+                          </a>
                         </li>
                     )
                 })

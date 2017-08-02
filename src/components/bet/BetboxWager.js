@@ -1,10 +1,10 @@
 import React  from 'react';
 import btc from '../../icons/icon_btc.svg';
 
-const BetboxWager = ({wager, onWagerChange, minWager, maxWager, halveWager, doubleWager}) => {
+const BetboxWager = ({wager, onChange, minWager, maxWager, halveWager, doubleWager}) => {
 
         return (
-        <section className="betbox_wager .columns .gapless">
+        <section className="betbox_wager">
             <span id="label"> TOTAL BET </span>
             <div className="input_group">
                 <div className="icon">
@@ -12,8 +12,8 @@ const BetboxWager = ({wager, onWagerChange, minWager, maxWager, halveWager, doub
                 </div>
                     <input 
                      type="text"
-                     value={wager}
-                     onChange={onWagerChange}
+                     value={wager.str}
+                     onChange={e => onChange(e.target.value)}
                      />
                 </div>
                 <div className="bet_btns">

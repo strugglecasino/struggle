@@ -138,6 +138,7 @@ module.exports = {
           /\.html$/,
           /\.(js|jsx)$/,
           /\.css$/,
+          /\.less$/,
           /\.json$/,
           /\.bmp$/,
           /\.gif$/,
@@ -168,6 +169,20 @@ module.exports = {
           
           compact: true,
         },
+      },
+      {
+        test: /\.less$/,
+        include: paths.appSrc,
+        use: [{
+                loader: "style-loader"
+            }, {
+                loader: "css-loader"
+            }, {
+                loader: "less-loader", options: {
+                    strictMath: true,
+                    noIeCompat: true
+                }
+            }]
       },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
