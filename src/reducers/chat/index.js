@@ -7,10 +7,8 @@ import CBuffer from 'CBuffer';
 const initialState = {
     waitingForServer: true,
     messages: new CBuffer(config.chat_buffer_size),
-    userList: [
-         {'uname': 'Es2thekay'}
-    ], 
-    showUserList: true,
+    userList: {},
+    showUserList: false,
     loadingInitialMessages: true
 }
 
@@ -22,17 +20,23 @@ const chatReducer = (state = initialState, action) => {
          return Actions.initChat
 
         case types.USER_JOINED:
-
-         return Actions.userJoined
+         let user = state.userList[this.props.user.uname];
+         return Object.assign({}, state, {
+             user: user
+         })
         
         case types.USER_LEFT:
          
-         return state;
+         return Object.assign({}, state, {
+             userList: state.userList
+         })
 
         case types.TOGGLE_CHAT_USERLIST:
 
-         return state;
-        
+         return Object.assign({}, state, {
+             showUserList: !state.showUserList
+         });
+
         default:
         
          return state;

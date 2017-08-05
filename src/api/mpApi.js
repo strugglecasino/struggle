@@ -1,5 +1,6 @@
 import config from '../utils/config';
 import * as helpers from '../utils/helpers';
+import axios from 'axios';
 import _ from 'lodash';
 import $ from 'jquery';
 
@@ -45,11 +46,11 @@ const apiVersion = 'v1';
 
 
 let noop = function() {};
-let makeMPRequest = function(method, bodyParams, endpoint, callbacks, overrideOpts) {
+const makeMPRequest = (method, bodyParams, endpoint, callbacks, overrideOpts) => {
 
 let url = config.mp_api_uri + '/' + apiVersion + endpoint;
 
-let ajaxOpts = {
+let dataOpts = {
       url:      url,
       dataType: 'json', // data type of response
       method:   method,
@@ -64,21 +65,18 @@ let ajaxOpts = {
       error:    callbacks.error || noop,
       complete: callbacks.complete || noop
     };
-
-    $.ajax(_.merge({}, ajaxOpts, overrideOpts || {}));
+    fetch(dataOpts || overrideOpts)
 };
 
 
 
-export const listBets = (callbacks) => {
-    let endpoint = '/list-bets';
-    makeMPRequest('GET', undefined, endpoint, callbacks, {
-      data: {
-        app_id: config.app_id,
-        limit: config.bet_buffer_size
-      }
-    });
-};
+export const listBets = (callbacks, endpoint = '/bets') => {
+  fetch(this.dataOpts)
+   axios.get(undefined, endpoint, callbacks, {
+     data: config.app_id,
+     limit: config.bet_buffer_size
+   })
+}
 
 export const getTokenInfo = (callbacks) => {
     let endpoint = '/token';

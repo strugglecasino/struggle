@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import Topbar from './Topbar';
 import Navbar from './Navbar';
-import Chatbox from '../containers/Chatbox'
+import Chatbox from '../containers/Chatbox';
 import Betbox from '../containers/Betbox';
 import BetTabsNav from '../containers/BetTabsNav';
 import BetTabs from '../components/tabs/BetTabs';
-import Preloader from '../components/Preloader';
+// import Preloader from '../components/Preloader';
 import * as worldActions from '../actions/world/';
-import * as chatActions from '../actions/chat/';
-import * as betActions from '../actions/bet/';
+// import * as chatActions from '../actions/chat/';
+// import * as betActions from '../actions/bet/';
 import $ from 'jquery';
-import * as MoneyPot from '../api/mpApi';
+// import * as MoneyPot from '../api/mpApi';
 import config from '../utils/config';
-import * as helpers from '../utils/helpers';
-import socket from 'socket.io-client';
+// import * as helpers from '../utils/helpers';
+// import socket from 'socket.io-client';
 
 
 const mapStateToProps = (state) => ({
@@ -24,11 +23,19 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => {
-    return { actions: bindActionCreators(Object.assign({}, betActions, worldActions, chatActions, MoneyPot), dispatch)}
+    return {
+        userLogout: (user) => dispatch(worldActions.userLogout()),
+        changeTab: (tabName) => dispatch(worldActions.changeTab())
+    }
 };
 
 
 class App extends Component {
+    onRefreshClick(){
+            $('#refresh').click(function(){
+                $('.refresh').toggleClass('.resfresh_active');
+            })
+    };
 
 
     openDepositPopUp(){
@@ -59,7 +66,7 @@ class App extends Component {
     };
 
     render () {
-        let  { world, chat } = this.props;
+        let  { world, chat, userLogout } = this.props;
         return (
             <main>
 
@@ -67,20 +74,20 @@ class App extends Component {
                   userList={chat.userList}/>
                 <Navbar 
                     world={world} 
-                    userLogout={this.props.userLogout}
+                    onRefreshClick={this.onRefreshClick}
+                    userLogout={userLogout}
                     openDepositPopUp={this.openDepositPopUp}
                     openWithdrawPopUp={this.openWithdrawPopUp}
-                    refreshUser={worldActions.startRefreshingUser} 
                 />
                 <div className="main">
                     <Betbox />
                     <Chatbox />
                 </div>
                 <div className="tabs">
-                    <BetTabsNav />
-                    <BetTabs 
-                      world={world}
+                    <BetTabsNav 
+                      currTab={world.currTab}
                     />
+                    <BetTabs />
                 </div>
             </main>
         );

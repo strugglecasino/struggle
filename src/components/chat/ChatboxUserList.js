@@ -4,8 +4,9 @@ import * as helpers from '../../utils/helpers';
 import config from '../../utils/config';
 
 const ChatboxUserList = ({userList}) => {
+
     return (
-        <ul className="chatbox_userlist">
+        <ul className='chatbox_userlist'>
             {
                 _.values(userList).map((u) => {
                     return (

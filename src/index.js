@@ -9,9 +9,10 @@ import './less/main.less';
 const store = configureStore;
 const root = document.getElementById('root');
 
+
 render(
   <Provider store={store}>
-    <App/>
+    <App store={store} />
   </Provider>,
   root
 )

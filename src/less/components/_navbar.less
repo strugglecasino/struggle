@@ -39,14 +39,13 @@
             position: relative;
             width: 16rem;
             height: auto;
-            background: @accent_shadow;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
+            border: 0.2rem solid @accent_color_base;
             border-radius: 0.5rem;
-            padding: @layout_padding;
-            box-shadow: 0 0.3rem 0 0 darken(@accent_shadow, 17), 0 -0.1rem 0 0 darken(@gray_lite, 18);
+            padding: (@layout_padding) /2 @layout_padding;
 
             @media all and(max-width: @size-lg) {
                 float: left;
@@ -54,20 +53,14 @@
             span {
                 position: relative;
                 display: flex;
-                justify-content: flex-start;
-                left: 1.5rem;
-                align-items: center;
-                font-size: 120%;
-                color: @gray_lite;
+                justify-content: center;
+                align-items: center;;
+                font-size: 130%;
+                color: @accent_color_base;
                 height: 100%;
                 width: 100%;
                 font-family: Roboto Mono, monospace;
-                span:first-child {
-                    font-size: 90%;
-                    font-family: Monserrat, sans-serif;
-                    letter-spacing: 0.3rem;
-
-                }
+                font-weight: 800;
 
             }
             .pending {
@@ -89,15 +82,17 @@
             button {
                 position: relative;
                 cursor: pointer;
-                &:active {
+            }
+            .refresh_active {
                     animation-name: refresh_spin;
                     animation-duration: 0.3s;
                     animation-iteration-count: 2;
-                    animation-timing-function: transform 0.3s ease;
-                }
+                    animation-timing-function: transform 0.3s ease;               
             }
-            img {
-                width: 2.6rem;
+            i  {
+                font-size: 175%;
+                color: @accent_color_base;
+                padding: @layout_padding;
             }
         }
     }

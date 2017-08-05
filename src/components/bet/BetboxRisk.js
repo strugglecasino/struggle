@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
-import pourcent from '../../icons/icon_pourcent.svg';
+import React from 'react';
 import * as helpers from '../../utils/helpers';
 
 
-class BetboxRisk extends Component {
+const BetboxRisk = ({ wager, multiplier, onChange }) => {
 
-    render () {
-    let { bet } = this.props;
-
-    let winProb = helpers.multiplierToWinProb(bet.multiplier.num);
-    let isErr = bet.multiplier.error || bet.wager.error;
+    let winProb = helpers.multiplierToWinProb(multiplier.num);
+    let isErr = multiplier.error || wager.error;
 
     let risk;
     if(isErr){
@@ -21,19 +17,18 @@ class BetboxRisk extends Component {
         <section className="betbox_risk">
             <span id="label"> RISK </span>
             <div className="input_group">
-                <div className="icon">
-                <img src={pourcent} alt="%"/>
-                </div>
+                <label>
+                   <i className="icon-icon_pourcent"></i>
+                </label>
                 <input
                  type="text"
                  value={risk}
-                 onChange={this.props.onChange}
+                 onChange={onChange}
                  />
             </div>
             <div className="bet_btns"></div>
         </section>
-    );
-  }
-}
+   );
+};
 
 export default BetboxRisk;

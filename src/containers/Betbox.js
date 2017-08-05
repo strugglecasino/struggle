@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import BetboxRollButtons from '../components/bet/BetboxRollButtons';
 import BetboxWager from '../components/bet/BetboxWager';
 import BetboxMultiplier from '../components/bet/BetboxMultiplier';
 import BetboxProfit from '../components/bet/BetboxProfit';
-import BetboxRisk from '../components/bet/BetboxRisk';
-import BetboxRollOutcome from '../components/bet/BetboxRollOutcome';
+import BetboxRisk from '../components/bet/BetboxRisk'
 import * as betActions from '../actions/bet/';
 import * as worldActions from '../actions/world/';
 import * as helpers from '../utils/helpers';
-// import Betbot from '../components/bet/betbot/Betbot';
 import Hotkeys from '../components/bet/Hotkeys';
-import * as MoneyPot from '../api/mpApi';
-import robot from '../icons/icon_robot.svg';
+// import * as MoneyPot from '../api/mpApi';
 
 const mapStateToProps = state => ({
     bet: state.bet,
@@ -22,14 +18,32 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => {
-    return {actions:  bindActionCreators(worldActions, betActions, MoneyPot), dispatch }
+    return {
+        updateWager: (newWager) => dispatch(betActions.updateWager(newWager)),
+        updateMultiplier: (newMult) => dispatch(betActions.updateMultiplier(newMult)),
+        minWager: (newWager) => dispatch(betActions.minWager()),
+        toggleHotkeys: (hotkeysEnabled) => dispatch(worldActions.toggleHotkeys(hotkeysEnabled))
+    }
 };
 
 
 class Betbox extends Component {
-    makeBetHandler() {
+
+    onStoreChange(){
+        this.forceUpdate();
+    }
+    onWagerChange(e) {
+        let str = e.target.value;
+        this.props.dispatch(betActions.updateWager(str));
+    };
+    onMultiplierChange(e){
+        let str = e.target.value;
+        this.props.dispatch(betActions.updateMultiplier(str));
+    }
+    makeBetHandler(){
 
     }
+
     render() {
         let { bet, world } = this.props;
         let error = bet.wager.error || bet.multiplier.error;
@@ -41,48 +55,52 @@ class Betbox extends Component {
                 'MULTIPLIER_TOO_HIGH': 'Multiplier is too high, must be lower than x9900.',
                 'MULTIPLIER_TOO_LOW': 'Multiplier is too low, must be at least x1.01.'
         };
-        let profit = bet.wager.num * (bet.multiplier.num);
         return (
             <section className="betbox">
-                { error ? <span> { translateErrors[error] } </span> : '' }
-
-                <BetboxRollOutcome 
-                  world={world}
-                  profit={profit}
-                />
+                
+                { error ? <span className="error_messages"> { translateErrors[error] } </span> : '' }
 
                 <Hotkeys
                   hotkeysEnabled={world.hotkeysEnabled}
-                  toggleHotKeys={this.props.toggleHotKeys} 
+                  toggleHotkeys={this.props.toggleHotkeys} 
                 />
-
 
                 <BetboxWager 
                    wager={bet.wager} 
-                   minWager={this.props.minWager}  
+                   onChange={this.onWagerChange}
+                   minWager={this.props.onMinWager}  
                    halveWager={this.props.halveWager}
                    doubleWager={this.props.doubleWager}
                    maxWager={this.props.maxWager}
                 />
+
                 <BetboxMultiplier
                    multiplier={bet.multiplier}
+                   onChange={this.onMultiplierChange}
                    minMultiplier={this.props.minMultiplier}
                    halveMultiplier={this.props.halveMultiplier}
                    doubleMultiplier={this.props.doubleMultiplier}
                    maxMultiplier={this.props.maxMultiplier}
                 />
-                <BetboxRisk
-                  bet={bet}
-                  onChange={this.onStoreChange}
-                 />
-                 <BetboxProfit
-                  bet={bet}
-                  onChange={this.onStoreChange}
-                 />
-                <BetboxRollButtons
-                  world={world}
-                  makeBetHandler={this.makeBetHandler}
+
+                <BetboxRisk 
+                  wager={bet.wager}
+                  multiplier={bet.multiplier}
+                  onChange={this.onStoreChange} 
                 />
+
+                <BetboxProfit 
+                  wager={bet.wager}
+                  multiplier={bet.multiplier}
+                  onChange={this.onStoreChange} 
+                />
+
+                <BetboxRollButtons
+                   world={world} 
+                   bet={bet}
+                  makeBetHandler={this.makeBetHandler}
+                 />
+
             </section>
         );
     }

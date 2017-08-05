@@ -16,7 +16,7 @@ const mapStateToProps =  state => ({
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         initChat: (data) => {
-            dispatch(Actions.initChat(data));
+             dispatch(Actions.initChat(data));
         },
         userJoined: (user) => {
             dispatch(Actions.userJoined(user));
@@ -27,19 +27,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         sendMessage: (text) => {
             dispatch(Actions.sendMessage(text));
         },
-        toggleChatUserList: () => {
-            dispatch(Actions.toggleChatUserList({}));
+        toggleChatUserList: (showUserList) => {
+            dispatch(Actions.toggleChatUserList(showUserList));
         }
     }
 }
 
 
 class Chatbox extends Component {
-    constructor(props) {
-        super(props);
-        this.scrollChat = this.scrollChat.bind(this);
-        this.onNewMessage = this.onNewMessage.bind(this);
-    }
 
     onNewMessage(){
         this.scrollChat();
@@ -51,10 +46,27 @@ class Chatbox extends Component {
         let { chat } = this.props;
         return (
             <section className="chatbox">
-                <ChatboxHeader showUserList={chat.showUserList}  toggleChatUserList={this.props.toggleChatUserList}/>
-                { chat.showUserList ? <ChatboxUserList userList={chat.userList} /> : '' }
-                <ChatboxMessages messages={chat.messages}/>
+
+                <ChatboxHeader 
+                   showUserList={chat.showUserList}  
+                   toggleChatUserList={this.props.toggleChatUserList}
+                />
+                { 
+                    chat.showUserList ? 
+                      <ChatboxUserList 
+                         userList={chat.userList}
+                      />
+                : ''
+                }
+
+
+                <ChatboxMessages 
+                  messages={chat.messages}
+                />
+
+
                 <ChatboxForm />
+
             </section>
         );
     }

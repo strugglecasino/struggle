@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { sendMessage } from '../actions/chat/';
-import  paperplane   from '../icons/icon_paperplane.svg';
 
 const mapStateToProps = state => ({
     chat: state.chat,
@@ -56,7 +55,7 @@ class ChatboxForm extends Component {
                  ref='input'
                 />
                 <button type='submit' onClick={this.onSend}>        
-                    <img src={paperplane} alt="send"/>
+                    <i className="icon-icon_paperplane"></i>
                 </button>
             </section>
         );

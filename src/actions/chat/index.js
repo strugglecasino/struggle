@@ -1,5 +1,6 @@
 import * as types from './types';
 
+
 export const initChat = (data) => {
     return {
         type: types.INIT_CHAT,

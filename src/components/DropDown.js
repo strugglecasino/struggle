@@ -27,7 +27,7 @@ class Dropdown extends Component {
         return (
             <section className='dropdown'>
                 <button className="dropdown_toggle" onClick={this.dropDownToggle}>
-                    { world.user.uname + ' ' }  <img src={chevron} alt="chevron"/>
+                    { world.user.uname + ' ' }  <i className="icon-icon_chevron"></i>
                 </button>
                 <ul className={dropDownMenuClass}>
                     <li>

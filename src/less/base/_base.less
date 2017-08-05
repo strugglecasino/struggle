@@ -125,32 +125,11 @@ button, input {
     justify-content: space-around;
     align-items: space-between;
     flex-wrap: wrap;
-    margin:0;
-    padding:0;
     width: 69%;
     min-height: calc(100vh - 20rem);
     // media queries 
     @media all and(max-width: @size-xl) {
         width: 100%;
-    }
-    .betbox_toggle_bot {
-        position: absolute;
-        bottom:15rem;
-        right: 15rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: @accent_color_base;
-        font-weight: bold;
-        cursor: pointer;
-        img {
-            width: 5rem;
-        }
-    }
-    .input_group {
-        img {
-            width: 4rem;
-        }
     }
 }
 .betbox_roll_outcome {
@@ -159,8 +138,9 @@ button, input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: @layout_padding_lg;
     width: 100%;
-    height: 50%;
+    min-height: 30rem;
 
     .current_roll, .default_roll {
         position: relative;
@@ -170,9 +150,9 @@ button, input {
         align-items: center;
         width: 100%;
         height: auto;
-        margin:@layout_padding_lg auto;
-        padding: @layout_padding_lg;
-        font-size: 260%;
+        margin:0 auto;
+        padding:(@layout_padding_lg * 3);
+        font-size: 210%;
         font-family:  'PT Mono', monospace;
     }
     .win {
@@ -186,55 +166,104 @@ button, input {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
+        padding:0 @layout_padding_lg;
         width: 60%;
-        height: auto;
-        padding: @layout_padding_lg;
-        margin: 2rem auto;
+        height:4.5rem;
+        margin: 1rem auto;
         border-radius: 8rem;
-        box-shadow: 0 0 0.2rem 0 darken(@gray_lite, 8);
+        box-shadow: 0.15rem 0.1rem 0.15rem 0 darken(@gray_lite, 8),inset 0.15rem 0.1rem 0.15rem 0 darken(@gray_lite, 8);
         font-family: 'PT Mono', monospace;
-        font-size: 110%;
+        font-size: 120%;
+        overflow-y: hidden;
+        flex-wrap: wrap;
+
     }
 }
-.betbox_risk, .betbox_profit {
+.betbox_risk, .betbox_profit, {
     position: relative;
-    top:-9px;
+    top:-0.7rem;
 }
-
-.betbox_wager, .betbox_multiplier, .betbox_profit, .betbox_risk {
+.betbot_toggle {
+    position: relative;
+    margin:0 (3.1415 * 4.6rem);
+#betbot_modal_btn {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    top: 1rem;
+    margin:0 auto;
+    height: 5rem;
+    align-items: center;
+    padding:0 (@layout_padding_lg * 1.6);
+    background: @gray_lite;
+    border-radius: 0.8rem;
+    box-shadow: 0 0.3rem 0 0 @lite_shadow;
+    img {
+        width: 5rem;
+    }
+}
+}
+.betbox_wager, .betbox_multiplier, .betbox_profit, .betbox_risk, .betbox_targets {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content:stretch;
     align-items: flex-start;
     flex-wrap: wrap;
     height: auto;
+    padding: @layout_padding 0;
+    margin:0 2rem;
     #label {
+        font-family: Monserrat, sans-serif;
         padding: @layout_padding;
         font-weight: bold;
         color: @accent_color_base;
+        font-size: 110%;
     }
     .input_group {
         position: relative;
         width: 100%;
         height: auto;
         display: flex;
+            label {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background: @accent_color_base;
+            border-top-left-radius: 0.6rem;
+            border-bottom-left-radius: 0.6rem;
+            box-shadow: 0 0.3rem 0 0 @accent_shadow;
+            i {
+               position: relative;
+               font-size: 175%;
+               padding: 1rem;
+               color: @gray_lite;
+              }
+        }
     input {
         position: relative;
         height: auto;
-        padding: @layout_padding;
+        max-width: 65%;
+        padding: @layout_padding 0;
         background: @gray_lite;
-        border-top-right-radius: 0.8rem;
-        border-bottom-right-radius: 0.8rem;
+        border-top-right-radius: 0.6rem;
+        border-bottom-right-radius: 0.6rem;
         box-shadow: 0 0.3rem 0 0 @lite_shadow;
-        text-indent:40%;
+        text-align: center;
         font-family: 'PT Mono', monospace;
-        font-size: 110%;
-        font-weight: 400;
-    }        
+        font-size: 130%;
+        font-weight: 900;
+        color: @accent_color_base;
+    }       
         .icon {
             position: relative;
             background: @accent_color_base;
+            padding: @layout_padding;
             border-top-left-radius: 0.8rem;
             border-bottom-left-radius: 0.8rem;
             box-shadow: 0 0.3rem 0 0 @accent_shadow;
@@ -245,14 +274,49 @@ button, input {
             position: relative;
             width: 100%;
             display: flex;
-            justify-content: space-around;
+            justify-content: flex-start;
+            align-items: center;
             padding: @layout_padding_lg 0;
+            margin:0 auto;
             button {
                 cursor: pointer;
+                width: calc(80% / 4);
+                font-family: Monserrat, sans-serif;
+                font-weight: 600;
+                font-size: 90%;
+                color: darken(@lite_shadow, 10);
             }
         }
  }
 
+.betbox_targets {
+    
+    .icon {
+        position: relative;
+        border-radius: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        left: 0.3rem;
+        z-index: 888;
+    }
+    .input_group {
+        display: flex !important;
+        align-items: space-between !important;
+        input {
+            margin-left: -4rem;
+            width: 12rem;
+            text-align: justify;
+            text-indent: 52% !important;
+            &:first-of-type {
+                border-right: 0.3rem solid @lite_shadow;
+                border-top-right-radius: 0 !important;
+                border-top-left-radius: 0.8rem;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0.8rem;
+            }
+        }
+    }
+} 
 
 .betbox_roll_buttons {
     position: relative;
@@ -289,7 +353,7 @@ button, input {
 }
 
 .hotkeys {
-    position: absolute;
+    position: relative;
     left: 3rem;
     top:3rem;
     button {
@@ -335,7 +399,7 @@ button, input {
     position: absolute;
     top:0;
     width: 100%;
-    height:60px;
+    height: auto;
     border-bottom:0.2rem solid darken(@gray_lite,8);
     background: #fff;
     display: flex;
@@ -347,13 +411,23 @@ button, input {
         position: relative;
         cursor: pointer;
         display: flex;
-        justify-content: center;
+        flex-direction: row;
+        justify-content: space-around;
         align-items: center;
         margin:0;
-        padding:0;
-        img {
-            height: auto;
-            width: 30%;
+        padding:@layout_padding_lg;
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 @layout_padding;
+            font-size: 95%;
+            color: @accent_color_base;
+            text-indent: 1rem;
+        i {
+            font-size: 250%;
+            color: @accent_color_base;
+        }
         }
     }
 }
@@ -443,12 +517,15 @@ button, input {
         justify-content: center;
         align-items: center;
         background-color: #fff;
-        img {
-            margin:0 auto;
-            width: 33%;
+        i {
+            font-size: 250%;
+            color: @accent_color_base;
         }
     }
 }
+
+
+
 
 .chatbox_userlist {
     position: absolute;
@@ -463,8 +540,9 @@ button, input {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    transition: all 0.2s ease;
     border-left: 0.2rem solid darken(@gray_lite, 9);
+
+
     li {
         position: relative;
         width: 100%;

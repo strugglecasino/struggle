@@ -6,7 +6,7 @@ import Logo from '../struggle.svg';
 
 // eslint-disable //
 
-const Navbar = ({world, userLogout, openDepositPopUp, openWithdrawPopUp, refreshUser }) => {
+const Navbar = ({world, userLogout, openDepositPopUp, openWithdrawPopUp, refreshUser, onRefreshClick }) => {
         return (
         <section className="navbar">
             <button className="toggle_button">
@@ -14,7 +14,8 @@ const Navbar = ({world, userLogout, openDepositPopUp, openWithdrawPopUp, refresh
             </button>
             <div className="navbar_side">
                 { world.user ? <BetboxBalance 
-                                  balance={world.user.balance} 
+                                  balance={world.user.balance}
+                                  onClick={onRefreshClick}
                                   refreshUser={refreshUser} 
                                   unconfirmed_balance={world.user.unconfirmed_balance}
                                /> 

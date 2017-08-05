@@ -1,14 +1,12 @@
 import React from 'react';
-import btc from '../../icons/icon_btc.svg';
-import refresh from '../../icons/icon_refresh.svg';
 
-const BetboxBalance = ({balance, unconfirmed_balance}) => {
+const BetboxBalance = ({balance, unconfirmed_balance, onClick}) => {
     return (
         <section className="balance">
-            <img src={btc} alt="btc" />
-            <span> { balance / 10 + ' ' } <span> bits </span></span>
-             <button>
-                <img src={refresh} alt='refresh'/>
+            <i className="icon-icon_btc"></i>
+            <span> { balance / 10  }</span>
+             <button id="refresh" className="refresh" onClick={onClick}>
+                <i className="icon-icon_refresh"></i>
             </button>
                 { unconfirmed_balance  ? <span className="pending"> { unconfirmed_balance / 10 + ' ' } <span> pending </span> </span> : ' ' }
         </section>
