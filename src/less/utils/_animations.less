@@ -11,12 +11,10 @@
 
 @keyframes slide_toggle {
     0% {
-        opacity: 1;
-        transform: translate(0);
+        right:0;
     }
     100% {
-       opacity: 0;
-       transform: translate(500rem);
+       right: -100rem;
     }
 }
 
@@ -35,10 +33,27 @@
 @keyframes slide_down {
     0% {
         opacity:0;
-        transform: translateY(-25rem);
+        transform: translateY(-2500rem);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+
+@keyframes flash1 {
+    0% {
+        opacity: 0;
+        transform: scale(0.1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
     }
 }

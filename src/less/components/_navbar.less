@@ -13,28 +13,53 @@
         display: none;
     }
 
-    @media all and(max-width: @size-lg){
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        justify-content: center;
-        align-items: space-between;
-        .toggle_button {
-            display: block;
-        }
-        
-    }
 
     .navbar_center {
         img {
-            width: 22rem;
+            width: 25rem;
         }
+    }
+    #user_info {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
     .navbar_side {
         position: relative;
         margin:0 5rem;
+        .notifications {
+            position: absolute;
+            padding: (@layout_padding * 1.4);
+            background: @accent_color_base;
+            border-radius: 50%;
+            left: -6rem;
+            top: -1rem;
+            i {
+                color: @gray_lite;
+                font-size: 160%;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
 
-
+        #toggle_chat {
+            position: relative;
+            width: 2rem;
+            height: auto;
+            display: flex;
+            margin-right: 3rem;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            i {
+                font-size: 175%;
+                color: @accent_color_base;
+            }
+        }
+    
         .balance {
             position: relative;
             width: 16rem;
@@ -44,38 +69,37 @@
             justify-content: space-between;
             align-items: center;
             border: 0.2rem solid @accent_color_base;
-            border-radius: 0.5rem;
-            padding: (@layout_padding) /2 @layout_padding;
+            border-radius: 0.33rem;
+            background: #fff;
+            #balance {
+                font-family: @font_body;
+                font-size: 130%;
+                font-weight:600;
+                color: lighten(@accent_color_base,19);
+                margin:0 auto;
+                text-indent: 20px;
+                letter-spacing: 0.1rem;
+            }
 
             @media all and(max-width: @size-lg) {
                 float: left;
             }
-            span {
-                position: relative;
-                display: flex;
-                justify-content: center;
-                align-items: center;;
-                font-size: 130%;
-                color: @accent_color_base;
-                height: 100%;
-                width: 100%;
-                font-family: Roboto Mono, monospace;
-                font-weight: 800;
 
-            }
-            .pending {
+        .pending {
             position: absolute;
-            left: 18rem;
-            color: @danger_color;
-            font-weight: bold;
+            left: 17.2rem;
+            width: 230px;
+            color: darken(@lite_shadow,14);
+            font-weight: 300;
             font-family: Roboto Mono, monospace;
-            font-size: 120%;
-            span {
+            font-size: 100%;
+            #comfirmations {
                 font-family: Monserrat, sans-serif;
-                color: @font_gray;
+                color: darken(@lite_shadow,4);
                 font-weight: 400;
+                font-size:90%;
                 letter-spacing: 0.1rem;
-                text-indent: -0.8rem;
+                text-indent: -1rem;
             }
             }
 
@@ -89,8 +113,15 @@
                     animation-iteration-count: 2;
                     animation-timing-function: transform 0.3s ease;               
             }
-            i  {
+            .icon-icon_btc  {
                 font-size: 175%;
+                background: @accent_color_base;
+                color: @gray_lite;
+                padding: @layout_padding;
+            }
+            .icon-icon_refresh {
+                position: relative;
+                font-size: 120%;
                 color: @accent_color_base;
                 padding: @layout_padding;
             }

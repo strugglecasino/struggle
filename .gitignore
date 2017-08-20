@@ -3,6 +3,9 @@
 # dependencies
 /node_modules
 
+# prout
+/icons
+
 # testing
 /coverage
 

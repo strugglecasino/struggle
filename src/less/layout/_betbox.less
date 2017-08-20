@@ -1,0 +1,318 @@
+.betbox {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: space-between;
+    flex-wrap: wrap;
+    width: 69%;
+    min-height: calc(100vh - 20rem);
+    // media queries 
+    @media all and(max-width: @size-xl) {
+        width: 100%;
+    }
+}
+
+.full {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: calc(100vh - 20rem);
+    // media queries 
+    @media all and(max-width: @size-xl) {
+        width: 100%;
+    }
+}
+
+.error_messages {
+    position: absolute;
+    width: 110%;
+    padding-top:2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    left:0;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: @danger_color;
+    animation-name: slide_down;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+    span {
+        position: relative;
+        font-family: @font_body;
+        font-weight: 400;
+        color: lighten(@danger_color, 11);
+        font-size:135%;
+        letter-spacing: 0.1rem;
+    }
+    button {
+        position: relative;
+        left: 6rem;
+        top:-0.3rem;
+        cursor: pointer;
+        i {
+            font-size: 110%;
+            color: darken(@danger_color, 15);
+        }
+    }
+}
+.betbox_roll_outcome {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: @layout_padding_lg;
+    width: 100%;
+    min-height: 30rem;
+
+    .current_roll, .default_roll {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        margin:0 auto;
+        padding:(@layout_padding_lg * 3);
+        font-size: 210%;
+        font-family:  'PT Mono', monospace;
+    }
+    .win {
+        color: @success_color;
+    }
+    .lose {
+        color: @danger_color;
+   }
+    .previous_rolls {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding:0 @layout_padding_lg;
+        width: 60%;
+        height:4.5rem;
+        margin: 1rem auto;
+        border-radius: 8rem;
+        box-shadow: 0.15rem 0.1rem 0.15rem 0 darken(@gray_lite, 8),inset 0.15rem 0.1rem 0.15rem 0 darken(@gray_lite, 8);
+        font-family: 'PT Mono', monospace;
+        font-size: 120%;
+        overflow-y: hidden;
+        flex-wrap: wrap;
+
+    }
+}
+.betbox_risk, .betbox_profit, {
+    position: relative;
+    top:-0.7rem;
+}
+.betbot_toggle {
+    position: relative;
+    margin:0 (3.1415 * 4.6rem);
+#betbot_modal_btn {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    top: 1rem;
+    margin:0 auto;
+    height: 5rem;
+    align-items: center;
+    padding:0 (@layout_padding_lg * 1.6);
+    background: @gray_lite;
+    border-radius: 0.8rem;
+    box-shadow: 0 0.3rem 0 0 @lite_shadow;
+    img {
+        width: 5rem;
+    }
+}
+}
+.betbox_wager, .betbox_multiplier, .betbox_profit, .betbox_risk, .betbox_targets {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content:stretch;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    height: auto;
+    padding: @layout_padding 0;
+    margin:0 2rem;
+    #label {
+        font-family: Monserrat, sans-serif;
+        padding: @layout_padding;
+        font-weight: bold;
+        color: @accent_color_base;
+        font-size: 110%;
+    }
+    .input_group {
+        position: relative;
+        width: 100%;
+        height: auto;
+        display: flex;
+            label {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background: @accent_color_base;
+            border-top-left-radius: 0.6rem;
+            border-bottom-left-radius: 0.6rem;
+            box-shadow: 0 0.3rem 0 0 @accent_shadow;
+            i {
+               position: relative;
+               font-size: 115%;
+               padding: 1.3rem;
+               color: @gray_lite;
+               &:first-child, &:last-child {
+                   font-size: 170%;
+               }
+              }
+        }
+    input {
+        position: relative;
+        height: auto;
+        max-width: 65%;
+        padding: @layout_padding 0;
+        background: @gray_lite;
+        border-top-right-radius: 0.6rem;
+        border-bottom-right-radius: 0.6rem;
+        box-shadow: 0 0.3rem 0 0 @lite_shadow;
+        text-align: center;
+        font-family: 'PT Mono', monospace;
+        font-size: 130%;
+        font-weight: 900;
+        color: @accent_color_base;
+    }       
+        .icon {
+            position: relative;
+            background: @accent_color_base;
+            padding: @layout_padding;
+            border-top-left-radius: 0.8rem;
+            border-bottom-left-radius: 0.8rem;
+            box-shadow: 0 0.3rem 0 0 @accent_shadow;
+        }
+    }
+
+        .bet_btns {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: @layout_padding_lg 0;
+            margin:0 auto;
+            button {
+                cursor: pointer;
+                width: calc(80% / 4);
+                font-family: Monserrat, sans-serif;
+                font-weight: 600;
+                font-size: 90%;
+                color: darken(@lite_shadow, 10);
+            }
+        }
+ }
+
+.betbox_targets {
+    
+    .icon {
+        position: relative;
+        border-radius: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        left: 0.3rem;
+        z-index: 888;
+    }
+    .input_group {
+        display: flex !important;
+        align-items: space-between !important;
+        input {
+            margin-left: -4rem;
+            width: 12rem;
+            text-align: justify;
+            text-indent: 52% !important;
+            &:first-of-type {
+                border-right: 0.3rem solid @lite_shadow;
+                border-top-right-radius: 0 !important;
+                border-top-left-radius: 0.8rem;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0.8rem;
+            }
+        }
+    }
+} 
+
+.betbox_roll_buttons {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 30%;
+    padding:0;
+    margin:0;
+    button {
+        position: relative;
+        cursor: pointer;
+        padding: 2rem 2.8rem;
+        width: 10rem;
+        border-radius: 0.6rem;
+        background: @accent_color_base;
+        letter-spacing: 0.1rem;
+        font-family: @font_body;
+        font-weight: 800;
+        color: darken(@gray_lite, 8);
+        font-size: 125%;
+        margin: 2rem;
+        box-shadow: 0 0.3rem 0 0 @accent_shadow;
+        &:hover {
+            background: lighten(@accent_color_base, 3);
+            box-shadow: 0 0.3rem 0 0 lighten(@accent_shadow, 3);
+            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        kbd {
+            position: absolute;
+            color: darken(@accent_shadow,8);
+            font-size: 80%;
+            font-weight: 800;
+            right: 0.8rem;
+            top: 2.2rem;
+        }
+    }
+}
+
+.hotkeys {
+    position: relative;
+    padding: @layout_padding;
+    width: 50px;
+    height: auto;
+    top: -50px;
+    left: 80px;
+    button {
+        position: relative;
+        cursor: pointer;
+        border-radius: 0.5rem;
+        padding: @layout_padding;
+        border: 0.2rem solid darken(@gray_lite, 4);
+        color: darken(@gray_lite, 4);
+        font-weight: bold;
+        font-size: 95%;
+    }
+    .active {
+        border-color: @success_color;
+        color:@success_color;
+        background: lighten(@success_color, 28);
+    }
+}

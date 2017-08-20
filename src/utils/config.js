@@ -1,15 +1,15 @@
 const config = {
   app_id: 867, 
   app_name: 'struggle',
-  redirect_uri: 'https://strugglecasino.github.io',
+  redirect_uri: 'https://strugglecasino.github.io/',
   mp_browser_uri: 'https://www.moneypot.com',
   mp_api_uri: 'https://api.moneypot.com',
   chat_uri: '//socket.moneypot.com',
   debug: isRunningLocally(),
   force_https_redirect: !isRunningLocally(),
   house_edge: 0.01,
-  chat_buffer_size: 5,
-  bet_buffer_size: 5
+  chat_buffer_size: 150,
+  bet_buffer_size: 25
 };
 
 (function() {

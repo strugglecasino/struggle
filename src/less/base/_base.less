@@ -91,6 +91,7 @@ button, input {
         margin:0;
         padding:0;
         border-left: 0.2rem solid darken(@gray_lite, 8);
+        background: #fff;
         cursor: pointer;
         &:first-child {
             border-left: none;
@@ -117,260 +118,13 @@ button, input {
         }
 }
 
-
-.betbox {
+.chat_hidden {
     position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: space-between;
-    flex-wrap: wrap;
-    width: 69%;
-    min-height: calc(100vh - 20rem);
-    // media queries 
-    @media all and(max-width: @size-xl) {
-        width: 100%;
-    }
-}
-.betbox_roll_outcome {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: @layout_padding_lg;
-    width: 100%;
-    min-height: 30rem;
-
-    .current_roll, .default_roll {
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: auto;
-        margin:0 auto;
-        padding:(@layout_padding_lg * 3);
-        font-size: 210%;
-        font-family:  'PT Mono', monospace;
-    }
-    .win {
-        color: @success_color;
-    }
-    .lose {
-        color: @danger_color;
-   }
-    .previous_rolls {
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding:0 @layout_padding_lg;
-        width: 60%;
-        height:4.5rem;
-        margin: 1rem auto;
-        border-radius: 8rem;
-        box-shadow: 0.15rem 0.1rem 0.15rem 0 darken(@gray_lite, 8),inset 0.15rem 0.1rem 0.15rem 0 darken(@gray_lite, 8);
-        font-family: 'PT Mono', monospace;
-        font-size: 120%;
-        overflow-y: hidden;
-        flex-wrap: wrap;
-
-    }
-}
-.betbox_risk, .betbox_profit, {
-    position: relative;
-    top:-0.7rem;
-}
-.betbot_toggle {
-    position: relative;
-    margin:0 (3.1415 * 4.6rem);
-#betbot_modal_btn {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    top: 1rem;
-    margin:0 auto;
-    height: 5rem;
-    align-items: center;
-    padding:0 (@layout_padding_lg * 1.6);
-    background: @gray_lite;
-    border-radius: 0.8rem;
-    box-shadow: 0 0.3rem 0 0 @lite_shadow;
-    img {
-        width: 5rem;
-    }
-}
-}
-.betbox_wager, .betbox_multiplier, .betbox_profit, .betbox_risk, .betbox_targets {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content:stretch;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    height: auto;
-    padding: @layout_padding 0;
-    margin:0 2rem;
-    #label {
-        font-family: Monserrat, sans-serif;
-        padding: @layout_padding;
-        font-weight: bold;
-        color: @accent_color_base;
-        font-size: 110%;
-    }
-    .input_group {
-        position: relative;
-        width: 100%;
-        height: auto;
-        display: flex;
-            label {
-            position: relative;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            background: @accent_color_base;
-            border-top-left-radius: 0.6rem;
-            border-bottom-left-radius: 0.6rem;
-            box-shadow: 0 0.3rem 0 0 @accent_shadow;
-            i {
-               position: relative;
-               font-size: 175%;
-               padding: 1rem;
-               color: @gray_lite;
-              }
-        }
-    input {
-        position: relative;
-        height: auto;
-        max-width: 65%;
-        padding: @layout_padding 0;
-        background: @gray_lite;
-        border-top-right-radius: 0.6rem;
-        border-bottom-right-radius: 0.6rem;
-        box-shadow: 0 0.3rem 0 0 @lite_shadow;
-        text-align: center;
-        font-family: 'PT Mono', monospace;
-        font-size: 130%;
-        font-weight: 900;
-        color: @accent_color_base;
-    }       
-        .icon {
-            position: relative;
-            background: @accent_color_base;
-            padding: @layout_padding;
-            border-top-left-radius: 0.8rem;
-            border-bottom-left-radius: 0.8rem;
-            box-shadow: 0 0.3rem 0 0 @accent_shadow;
-        }
-    }
-
-        .bet_btns {
-            position: relative;
-            width: 100%;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            padding: @layout_padding_lg 0;
-            margin:0 auto;
-            button {
-                cursor: pointer;
-                width: calc(80% / 4);
-                font-family: Monserrat, sans-serif;
-                font-weight: 600;
-                font-size: 90%;
-                color: darken(@lite_shadow, 10);
-            }
-        }
- }
-
-.betbox_targets {
-    
-    .icon {
-        position: relative;
-        border-radius: 0 !important;
-        background: transparent !important;
-        box-shadow: none !important;
-        left: 0.3rem;
-        z-index: 888;
-    }
-    .input_group {
-        display: flex !important;
-        align-items: space-between !important;
-        input {
-            margin-left: -4rem;
-            width: 12rem;
-            text-align: justify;
-            text-indent: 52% !important;
-            &:first-of-type {
-                border-right: 0.3rem solid @lite_shadow;
-                border-top-right-radius: 0 !important;
-                border-top-left-radius: 0.8rem;
-                border-bottom-right-radius: 0;
-                border-bottom-left-radius: 0.8rem;
-            }
-        }
-    }
-} 
-
-.betbox_roll_buttons {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 30%;
-    padding:0;
-    margin:0;
-    button {
-        position: relative;
-        cursor: pointer;
-        padding: @layout_padding_lg 2.8rem;
-        width: 12rem;
-        border-radius: 0.5rem;
-        background: @gray_lite;
-        border: 0.2rem solid darken(@gray_lite, 8);
-        font-weight: 700;
-        color: darken(@gray_lite, 8);
-        font-size: 115%;
-        margin:  4rem;
-        kbd {
-            position: absolute;
-            color: @success_color;
-            font-size: 70%;
-            font-weight: 800;
-            right: 1.7rem;
-            top: 1.7rem;
-        }
-    }
-}
-
-.hotkeys {
-    position: relative;
-    left: 3rem;
-    top:3rem;
-    button {
-        position: relative;
-        cursor: pointer;
-        border-radius: 0.5rem;
-        padding: @layout_padding;
-        border: 0.2rem solid darken(@gray_lite, 4);
-        color: darken(@gray_lite, 4);
-        font-weight: bold;
-        font-size: 95%;
-    }
-    .active {
-        border-color: @success_color;
-        color:@success_color;
-        background: lighten(@success_color, 28);
-    }
+    display: none;
+    animation-name: slide_toggle;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out; 
 }
 
 .chatbox {
@@ -392,8 +146,9 @@ button, input {
         margin:0;
         padding:0;
         float: none;
+        border-top: 0.2rem solid darken(@gray_lite, 9);
     }
-}
+
 
 .chatbox_header {
     position: absolute;
@@ -489,6 +244,7 @@ button, input {
     width: 100%;
     border-top: 0.2rem solid darken(@gray_lite, 8);
     z-index: 8;
+    overflow: hidden;
     input {
         position: relative;
         width: 70%;
@@ -523,13 +279,63 @@ button, input {
         }
     }
 }
+}
 
-
+.loader {
+    position: relative;
+    display: flex;
+    height: auto;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    margin:0;
+    padding:0;
+    background: white;
+    .loader_inner {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 20%;
+        height: auto;
+    figure {
+        position: relative;
+        width: 12px;
+        height: 12px;
+        background: @accent_color_base;
+        border-radius: 50%;
+    }
+    #circle1 {
+        position: relative;
+        animation-name: flash1;
+        animation-duration: 0.6s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in;
+    }
+    #circle2 {
+        position: relative;
+        animation-name: flash1;
+        animation-duration: 0.6s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-out;
+        animation-delay: 2s;
+    }
+    #circle3 {
+        position: relative;
+        animation-name: flash1;
+        animation-duration: 0.6s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+        animation-delay: 4s;
+    }
+    }
+}
 
 
 .chatbox_userlist {
     position: absolute;
-    width: 50%;
+    width: 70%;
     height: 100%;
     background: lighten(@gray_lite,2);
     top:calc(60px + 0.2rem);

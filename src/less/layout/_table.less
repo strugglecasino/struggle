@@ -5,6 +5,12 @@
     margin:0;
     padding:0;
     border-collapse: collapse;
+    .win {
+        color: @success_color;
+    }
+    .lose {
+        color: @danger_color;
+    }
     tbody {
         position: relative;
         width: 100%;
@@ -17,14 +23,45 @@
             display: flex;
             flex-direction: row;
             justify-content: space-around;
-            align-items: center;
-            &:first-of-type(even) {
-                background: @gray_lite;
+            &:nth-of-type(even) {
+                background: lighten(@gray_lite,1);
+            }
+            #bet_timestamp {
+                font-family: Roboto Mono, monospace;
+                font-size: 85%;
+                color: @font_gray;
+            }
+            #bet_id {
+                a {
+                    font-family: @font_numeral;
+                    font-weight: 400;
+                }
+            }
+            #bet_uname {
+                a {
+                    font-family: @font_body;
+                    font-weight: 500;
+                }
+            }
+            #bet_wager {
+                font-family: @font_numeral;
+                        color: darken(@font_gray, 8);
+                span {
+                    font-family: @font_body;
+                    text-indent: 8px;
+                }
+            }
+            #bet_target, 
+            #bet_roll {
+                font-family: @font_numeral;
+                color: darken(@font_gray, 8);
             }
             td {
                 position: relative;
                 padding: @layout_padding 0;
-                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
     }
@@ -43,7 +80,6 @@
             display: flex;
             flex-direction: row;
             justify-content: space-around;
-            align-items: center;
             th {
                 position: relative;
                 padding: @layout_padding 0;
