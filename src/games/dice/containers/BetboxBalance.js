@@ -39,10 +39,12 @@ class BetboxBalance extends Component {
     render() {
     return (
         <section className="balance">
-            <i className="icon-icon_btc"></i>
+            <span id="label">
+            <i className="icon-icon_btc_line"></i>
+            </span>
             <span id="balance"> { worldStore.state.user.balance / 10 }</span>
              <button id="refresh" className="refresh" onClick={this.onRefreshUser}>
-                <i className="icon-icon_refresh"></i>
+                <i className="icon-icon_refresh_line"></i>
             </button>
                 { worldStore.state.user.balance.unconfirmed_balance  ? <div className="pending"> { worldStore.state.user.unconfirmed_balance / 10 + ' ' } <span id="comfirmations"> 0/6 confirmations </span></div> : ' ' }
         </section>

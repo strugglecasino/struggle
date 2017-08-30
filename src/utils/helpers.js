@@ -22,7 +22,7 @@ export function multiplierToWinProb(multiplier) {
   console.assert(multiplier > 0);
 
   // For example, n is 0.99 when house edge is 1%
-  var n = 1.0 - config.house_edge;
+  const n = 1.0 - config.house_edge;
 
   return n / multiplier;
 };
@@ -38,23 +38,23 @@ export function calcNumber(cond, winProb) {
   }
 };
 
-export function roleToLabelElement(role) {
+export const roleToLabelElement = (role) => {
   switch(role) {
     case 'ADMIN':
-      return <span id='admin'> ADMIN </span>;
+      return (<span id='admin'> ADMIN </span>);
     case 'MOD':
-      return <span id='admin'> ADMIN </span>;
+      return (<span id='mod'> MOD </span>);
     case 'OWNER':
-      return <span id='admin'> ADMIN </span>;
+      return (<span id='owner'> OWNER </span>);
     default:
       return '';
   }
 };
 
 // -> Object
-export function getHashParams() {
-  var hashParams = {};
-  var e,
+export const getHashParams = () => {
+  const hashParams = {};
+  let e,
       a = /\+/g,  // Regex for replacing addition symbol with a space
       r = /([^&;=]+)=?([^&;]*)/g,
       d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
@@ -68,8 +68,8 @@ export function getHashParams() {
 // getPrecision('.05') -> 2
 // getPrecision('25e-100') -> 100
 // getPrecision('2.5e-99') -> 100
-export function getPrecision(num) {
-  var match = (''+num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+export const  getPrecision = (num) => {
+  const match = (''+num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
   if (!match) { return 0; }
   return Math.max(
     0,
@@ -79,15 +79,8 @@ export function getPrecision(num) {
     (match[2] ? +match[2] : 0));
 };
 
-/**
- * Decimal adjustment of a number.
- *
- * @param {String}  type  The type of adjustment.
- * @param {Number}  value The number.
- * @param {Integer} exp   The exponent (the 10 logarithm of the adjustment base).
- * @returns {Number} The adjusted value.
- */
-export function decimalAdjust(type, value, exp) {
+
+export const decimalAdjust = (type, value, exp) => {
   // If the exp is undefined or zero...
   if (typeof exp === 'undefined' || +exp === 0) {
     return Math[type](value);
@@ -106,14 +99,14 @@ export function decimalAdjust(type, value, exp) {
   return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
 };
 
-export function round10(value, exp) {
+export const round10 = (value, exp) => {
   return decimalAdjust('round', value, exp);
 };
 
-export function floor10(value, exp) {
+export const floor10 = (value, exp) => {
   return decimalAdjust('floor', value, exp);
 };
 
-export function ceil10(value, exp) {
+export const ceil10 = (value, exp) => {
   return decimalAdjust('ceil', value, exp);
 };

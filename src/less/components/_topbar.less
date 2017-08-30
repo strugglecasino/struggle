@@ -1,0 +1,26 @@
+.topbar {
+    position: relative;
+    width: 100%;
+    margin:0;
+    height: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom:3.1416px solid  @gray_lite;
+    color: darken(@gray_lite, 11);
+    overflow: hidden;
+    .topbar_side {
+        position: relative;
+        padding: 0 2rem;
+        font-size:90%;
+    }
+    span {
+        font-family: @font_numeral;
+        color: @accent_color_base;
+        font-weight: 500;
+        height: 100%;
+        margin: 0 0.5rem;
+        line-height: 0;
+    }
+}

@@ -3,11 +3,13 @@
     width: 100%;
     height:8rem;
     margin:0;
+    padding:0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom:0.2rem solid darken(@gray_lite, 8);
+    border-bottom:3.1416px solid @gray_lite;
+
 
     .toggle_button {
         display: none;
@@ -29,21 +31,17 @@
     .navbar_side {
         position: relative;
         margin:0 5rem;
-        .notifications {
-            position: absolute;
-            padding: (@layout_padding * 1.4);
-            background: @accent_color_base;
-            border-radius: 50%;
-            left: -6rem;
-            top: -1rem;
-            i {
-                color: @gray_lite;
-                font-size: 160%;
-                &:hover {
-                    cursor: pointer;
-                }
-            }
+
+        #side_btns {
+            position: relative;
+            width: 15rem;
+            display: flex;
+            height: 100%;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
         }
+
 
         #toggle_chat {
             position: relative;
@@ -63,27 +61,26 @@
         .balance {
             position: relative;
             width: 16rem;
-            height: auto;
+            height: 4rem;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            border: 0.2rem solid @accent_color_base;
-            border-radius: 0.33rem;
+            border: 3.1416px solid @gray_lite;
+            border-radius: 0.6rem;
             background: #fff;
             #balance {
-                font-family: @font_body;
-                font-size: 130%;
-                font-weight:600;
-                color: lighten(@accent_color_base,19);
-                margin:0 auto;
-                text-indent: 20px;
-                letter-spacing: 0.1rem;
+                font-family: @font_numeral;
+                font-size: 119%;
+                font-weight:500;
+                color: @accent_color_base;
+                letter-spacing: 0.19rem;
+                width: 100%;
+                margin-left: 40px;
+                text-align: center;
             }
 
-            @media all and(max-width: @size-lg) {
-                float: left;
-            }
+
 
         .pending {
             position: absolute;
@@ -107,23 +104,20 @@
                 position: relative;
                 cursor: pointer;
             }
-            .refresh_active {
-                    animation-name: refresh_spin;
-                    animation-duration: 0.3s;
-                    animation-iteration-count: 2;
-                    animation-timing-function: transform 0.3s ease;               
+
+            #label {
+                position: absolute;
+                height: 100%;
+                width:40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-right: 3.1416px solid @gray_lite;
             }
-            .icon-icon_btc  {
-                font-size: 175%;
-                background: @accent_color_base;
-                color: @gray_lite;
-                padding: @layout_padding;
-            }
-            .icon-icon_refresh {
-                position: relative;
-                font-size: 120%;
+
+            i {
+                font-size: 144%;
                 color: @accent_color_base;
-                padding: @layout_padding;
             }
         }
     }

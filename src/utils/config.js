@@ -25,7 +25,7 @@ const config = {
     alert(errString);
     throw new Error(errString);
   }
-
+  
   // Sanity check: Print house edge
   console.log('House Edge:', (config.house_edge * 100).toString() + '%');
 })();

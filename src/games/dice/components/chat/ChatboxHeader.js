@@ -1,14 +1,21 @@
 import React from 'react';
 
 const ChatboxHeader = ({ showUserList, toggleChatUserList }) => {
+    let textOptions;
+    if(showUserList) {
+        textOptions = 'HIDE USERS';
+    } else {
+        textOptions = 'SHOW USERS'
+    };
     return(
-        <section className="chatbox_header">
+        <section className="chatbox_header" >
             <button onClick={toggleChatUserList}>  
+              <span> { textOptions } </span>
               { 
                   showUserList ? 
-                   <span> hide users <i className="icon-icon_eye_close"></i> </span> 
+                   <i className="icon-icon_eye_cross_line"> </i> 
                    : 
-                   <span> show users <i className="icon-icon_eye"></i> </span> 
+                  <i className="icon-icon_eye_line"></i>
               }
             </button>
         </section>

@@ -3,19 +3,19 @@ import _ from 'lodash';
 import CBuffer from 'CBuffer';
 import config from '../utils/config';
 import * as helpers from '../utils/helpers';
-import MoneyPot from '../api/mpApi';
-import socket from 'socket.io-client';
+import io from 'socket.io-client';
+import nanoid from 'nanoid';
+import MoneyPot from '../games/dice/containers/index';
+const socket = io(config.chat_uri);
 const EventEmitter = require('events').EventEmitter
-const nanoid = require('nanoid');
 
-let io = socket(config.chat_uri);
 
 class Store extends EventEmitter {
-  constructor(storeName, initialState, initialCallback) {
-    super(storeName, initialState, initialCallback);
-    this.state = initialState;
+  constructor(storeName, initState, initCallback) {
+    super(storeName, initState, initCallback);
+    this.state = initState;
     this.emitter = new EventEmitter();
-    initialCallback.call(this);
+    initCallback.call(this);
 
     const self = this;
 
@@ -49,14 +49,13 @@ if (helpers.getHashParams().access_token) {
   } else {
     localStorage.removeItem('expires_at');
     localStorage.removeItem('access_token');
+    console.log('[Token manager] access_token removed from localStorage');
   }
 } else {
   console.log('[token manager] no access token');
 }
 
-
-
-////////////////////////////////////////////////////////////
+/* CHATSTORE */
 
 export const chatStore = new Store('chat', {
   messages: new CBuffer(config.chat_buffer_size),
@@ -71,7 +70,7 @@ export const chatStore = new Store('chat', {
   Dispatcher.registerCallback('INIT_CHAT', function(data) {
     console.log('[ChatStore] received INIT_CHAT');
     // Give each one unique id
-    var messages = data.chat.messages.map(function(message) {
+    const messages = data.chat.messages.map((message) => {
       message.id = nanoid(16);
       return message;
     });
@@ -108,24 +107,24 @@ export const chatStore = new Store('chat', {
 
   // user is { id: Int, uname: String, role: 'admin' | 'mod' | 'owner' | 'member' }
   Dispatcher.registerCallback('USER_JOINED', function(user) {
-    console.log('[ChatStore] received USER_JOINED:', user);
+    console.log(user + ' joined');
     self.state.userList[user.uname] = user;
     self.emitter.emit('change', self.state);
   });
 
   // user is { id: Int, uname: String, role: 'admin' | 'mod' | 'owner' | 'member' }
   Dispatcher.registerCallback('USER_LEFT', function(user) {
-    console.log('[ChatStore] received USER_LEFT:', user);
+    console.log(user + ' left');
     delete self.state.userList[user.uname];
     self.emitter.emit('change', self.state);
   });
 
   // Message is { text: String }
   Dispatcher.registerCallback('SEND_MESSAGE', function(text) {
-    console.log('[ChatStore] received SEND_MESSAGE');
+    console.log('[Dispatcher] Send message');
     self.state.waitingForServer = true;
     self.emitter.emit('change', self.state);
-    io.emit('new_message', { text: text }, function(err) {
+    socket.emit('new_message', { text: text }, function(err) {
       if (err) {
         alert('Chat Error: ' + err);
       }
@@ -133,6 +132,8 @@ export const chatStore = new Store('chat', {
   });
 });
 
+
+/* BETSTORE */
 
 export const betStore = new Store('bet', {
   nextHash: undefined,

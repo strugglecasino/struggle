@@ -2,7 +2,7 @@ import React from 'react';
 
 const ChatboxMessage = ({ m, config, helpers }) => {
     return (
-    <li key={m.id} className="chatbox_message" >
+    <div key={m.id} className="chatbox_message" >
         <span id="message_time"> { helpers.formatDateToTime(m.created_at) } </span>
         <span id="message_user"> 
          <a href={config.mp_browser_uri + '/' + m.uname }> 
@@ -12,7 +12,7 @@ const ChatboxMessage = ({ m, config, helpers }) => {
          </a>   
       </span>
                 { m.user ? <span id="message_content" > { m.text } </span> : '' }
-    </li>
+    </div>
     );
 };
 

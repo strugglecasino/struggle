@@ -20,7 +20,7 @@ class MyBetsTab extends Component {
     }
     render () {
         return (
-        <table className="table">
+        <table className="table table-bordered">
             <thead>
                 <tr>
                     <th> ID </th>

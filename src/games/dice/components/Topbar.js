@@ -3,13 +3,13 @@ import React from 'react';
 const Topbar = ({userList}) => {
         return (
             <section className="topbar">
-                <div className="btc_price">
+                <div className="topbar_side">
                     BTC / USD 
                     <span>
-                        --
+                        $0
                     </span>
                 </div>
-                <div className="users_info">
+                <div className="topbar_side">
                  USERS ONLINE
                 <span>
                 {

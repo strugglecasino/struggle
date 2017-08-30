@@ -1,0 +1,40 @@
+.bet_tabs_nav {
+    position: relative;
+    width: 100%;
+    height:60px;
+    display: flex;
+    flex-direction: row;
+    border-top: 0.2rem solid darken(@gray_lite, 4); border-bottom: 0.2rem solid darken(@gray_lite, 4);
+    li {
+        position: relative;
+        width: calc(100% / 3);
+        height: 100%;
+        margin:0;
+        padding:0;
+        border-left: 0.2rem solid darken(@gray_lite, 8);
+        background: #fff;
+        cursor: pointer;
+        &:first-child {
+            border-left: none;
+        }
+      a {
+            position: relative;
+            text-decoration: none;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: darken(@gray_lite,8);
+            &:hover {
+                color: darken(@gray_lite, 18);
+            }
+        }
+    }
+        .active {
+            background: @gray_lite;
+            color: darken(@gray_lite, 8);
+        }
+}

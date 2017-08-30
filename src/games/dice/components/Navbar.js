@@ -27,10 +27,8 @@ const Navbar = ({ user, chatEnabled,userLogin, userLogout, openDepositPopUp, ope
 
 
                             <div id="user_info">
-
-
                             <button id="toggle_chat" onClick={toggleChat}>
-                               { chatEnabled ? <i className="icon-icon_chat_close"></i> : <i className="icon-icon_chat"></i>}
+                               { chatEnabled ? <i className="icon-icon_cross_chat_line"></i> : <i className="icon-icon_chat_line"></i>}
                             </button>
                      
                             <Dropdown 
@@ -41,7 +39,7 @@ const Navbar = ({ user, chatEnabled,userLogin, userLogout, openDepositPopUp, ope
                             /> 
                         </div>
                     : 
-                     <div> 
+                     <div id="side_btns"> 
                          <a  
                              onClick={userLogin}
                              href={config.mp_browser_uri + 

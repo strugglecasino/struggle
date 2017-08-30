@@ -38,7 +38,7 @@
         position: relative;
         width: 100%;
         height: auto;
-        border: 0.2rem solid darken(@gray_lite, 8);
+        border: 3.1416px solid @gray_lite;
         text-align: center;
         background: #fff;
         &:first-child {
@@ -48,14 +48,18 @@
             border-top: none;
         }
         button {
-            color: darken(@gray_lite, 12);
-            font-weight: bold;
+            color: @accent_color_base;
+            font-family: @font_body;
+            font-weight: 500;
             cursor: pointer;
             position: relative;
             padding: @layout_padding_lg;
             width: 100%;
+            transition: all 0.2s ease;
             &:hover {
-                color: @accent_color_base;
+                color: saturate(@accent_color_base,15);
+                background: lighten(@gray_lite, 2.5);
+                border-color: saturate(@gray_lite,80);
             }
         }
     }

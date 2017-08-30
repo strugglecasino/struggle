@@ -1,0 +1,23 @@
+.Slider {
+    display: block;
+    width: 180px;
+    height: 280px;
+    transform: rotate(45deg);
+    cursor: ns-resize;
+  }
+
+.Slider-circle,
+.Slider-bar {
+      fill: transparent;
+}
+
+.Slider-circle {
+      stroke: @accent_color_base;
+      box-shadow: 0 0 0 0.2rem #ddd;
+}
+
+.Slider-bar {
+      stroke:@gray_lite;
+      stroke-dashoffset: 0;
+      stroke-dasharray: 0;
+}

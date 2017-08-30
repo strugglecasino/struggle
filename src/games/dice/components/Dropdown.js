@@ -45,6 +45,7 @@ class Dropdown extends Component {
                             DEPOSIT
                         </button>
                     </li>
+
                     <li>
                         <button onClick={openWithdrawPopUp}>
                             CASHOUT

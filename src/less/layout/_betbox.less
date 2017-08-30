@@ -1,31 +1,18 @@
 .betbox {
     position: relative;
+    flex: 70% 0 0;
     display: flex;
+    align-self: flex-start;
     flex-direction: row;
     justify-content: space-around;
     align-items: space-between;
     flex-wrap: wrap;
-    width: 69%;
-    min-height: calc(100vh - 20rem);
-    // media queries 
-    @media all and(max-width: @size-xl) {
-        width: 100%;
-    }
+    height: calc(100vh - 20rem);
+    overflow-y: auto;
+    transition: flex 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
-
 .full {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: space-between;
-    flex-wrap: wrap;
-    width: 100%;
-    min-height: calc(100vh - 20rem);
-    // media queries 
-    @media all and(max-width: @size-xl) {
-        width: 100%;
-    }
+  flex: 1;
 }
 
 .error_messages {
@@ -63,54 +50,8 @@
         }
     }
 }
-.betbox_roll_outcome {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: @layout_padding_lg;
-    width: 100%;
-    min-height: 30rem;
 
-    .current_roll, .default_roll {
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: auto;
-        margin:0 auto;
-        padding:(@layout_padding_lg * 3);
-        font-size: 210%;
-        font-family:  'PT Mono', monospace;
-    }
-    .win {
-        color: @success_color;
-    }
-    .lose {
-        color: @danger_color;
-   }
-    .previous_rolls {
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding:0 @layout_padding_lg;
-        width: 60%;
-        height:4.5rem;
-        margin: 1rem auto;
-        border-radius: 8rem;
-        box-shadow: 0.15rem 0.1rem 0.15rem 0 darken(@gray_lite, 8),inset 0.15rem 0.1rem 0.15rem 0 darken(@gray_lite, 8);
-        font-family: 'PT Mono', monospace;
-        font-size: 120%;
-        overflow-y: hidden;
-        flex-wrap: wrap;
 
-    }
-}
 .betbox_risk, .betbox_profit, {
     position: relative;
     top:-0.7rem;
@@ -122,7 +63,7 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
     top: 1rem;
     margin:0 auto;
@@ -135,28 +76,48 @@
     img {
         width: 5rem;
     }
+ }
 }
+
+.betbox_outcome {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    background: @gray_lite;
+    #tooltip {
+        position: absolute;
+        font-size:2.3rem;
+        z-index:888;
+        font-family: @font_numeral;
+        color: @accent_color_base;
+        transition:all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
 }
-.betbox_wager, .betbox_multiplier, .betbox_profit, .betbox_risk, .betbox_targets {
+
+.betbox_child {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content:stretch;
+    height: 80%;
+    top:55px;
+    width: calc(100% /5);
+    justify-content:flex-start;
     align-items: flex-start;
-    flex-wrap: wrap;
     height: auto;
-    padding: @layout_padding 0;
-    margin:0 2rem;
     #label {
-        font-family: Monserrat, sans-serif;
-        padding: @layout_padding;
+        font-family: @font_body;
+        padding: 0.8rem 0.3rem;
         font-weight: bold;
         color: @accent_color_base;
         font-size: 110%;
     }
     .input_group {
         position: relative;
-        width: 100%;
+        width: 80%;
         height: auto;
         display: flex;
             label {
@@ -165,29 +126,31 @@
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            background: @accent_color_base;
+            background: #fff;
             border-top-left-radius: 0.6rem;
             border-bottom-left-radius: 0.6rem;
-            box-shadow: 0 0.3rem 0 0 @accent_shadow;
+            border: 1.60px solid @gray_lite;
+            border-right: none;
             i {
                position: relative;
-               font-size: 115%;
+               font-size:80%;
                padding: 1.3rem;
-               color: @gray_lite;
+               color: @accent_color_base;
                &:first-child, &:last-child {
                    font-size: 170%;
                }
-              }
+            }
         }
-    input {
+    input, .risk, .profit {
         position: relative;
         height: auto;
         max-width: 65%;
         padding: @layout_padding 0;
-        background: @gray_lite;
+        display: flex;
+        background: #fff;
         border-top-right-radius: 0.6rem;
         border-bottom-right-radius: 0.6rem;
-        box-shadow: 0 0.3rem 0 0 @lite_shadow;
+        border: 0.3rem solid @gray_lite;
         text-align: center;
         font-family: 'PT Mono', monospace;
         font-size: 130%;
@@ -205,20 +168,23 @@
     }
 
         .bet_btns {
-            position: relative;
-            width: 100%;
+            position: absolute;
+            width: 40px;
             display: flex;
-            justify-content: flex-start;
+            flex-direction: row;
+            justify-content: flex-end;
             align-items: center;
-            padding: @layout_padding_lg 0;
-            margin:0 auto;
+            z-index: 2;
+            height: 30px;
+            width: 100%;
+            left: 0;right: 0;bottom:0;
             button {
-                cursor: pointer;
-                width: calc(80% / 4);
-                font-family: Monserrat, sans-serif;
-                font-weight: 600;
-                font-size: 90%;
-                color: darken(@lite_shadow, 10);
+                position: relative;
+                display: flex;
+                width: 18%;
+                justify-content: center;
+                align-items: center;
+                background: spin(@accent_color_base, 200);
             }
         }
  }
@@ -260,9 +226,9 @@
     align-items: flex-start;
     flex-wrap: wrap;
     width: 100%;
-    height: 30%;
-    padding:0;
-    margin:0;
+    height: 15%;
+    padding:5rem 0;
+    margin-top:25px;
     button {
         position: relative;
         cursor: pointer;

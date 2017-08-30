@@ -1,31 +1,18 @@
 import React from 'react';
-// import Dispatcher from '../dispatcher/Dispatcher';
-import * as helpers from '../../../../utils/helpers';
 
-const BetboxRisk = ({betStore, onChange}) =>  {
 
-        const winProb = helpers.multiplierToWinProb(betStore.state.multiplier.num);
-        const isErr = betStore.state.wager.error || betStore.state.multiplier.error;
-
-        let risk;
-        if(isErr){
-            risk = '--';
-        } else {
-            risk = (winProb * 100).toFixed(2).toString();
-        };
-
+const BetboxRisk = ({risk, onChange}) =>  {
         return (
-        <section className="betbox_risk">
+        <section className="betbox_child">
             <span id="label"> RISK </span>
             <div className="input_group">
                 <label>
-                   <i className="icon-icon_pourcent"></i>
+                   <i className="icon-icon_pourcent_line"></i>
                 </label>
                 <input
-                 type="text"
-                 value={risk}
-                 onChange={onChange}
-                 />
+                  value={risk}
+                  onChange={onChange}
+                />
             </div>
             <div className="bet_btns"></div>
         </section>

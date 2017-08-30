@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import { betStore, worldStore, chatStore } from '../../../stores/Store';
 import Dispatcher from '../../../dispatcher/Dispatcher';
-import MoneyPot from '../../../api/mpApi';
+import MoneyPot from '../containers/index';
 import * as helpers from '../../../utils/helpers';
 import SHA256 from 'crypto-js/sha256';
 
 class BetboxRollButtons extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            waitingForServer: false
+        };
         this.onStoreChange = this.onStoreChange.bind(this);
         this.makeBetHandler = this.makeBetHandler.bind(this);
     }
  onStoreChange(){
      this.forceUpdate();
  }
- componentWillMount(){
+ componentDidMount(){
      betStore.on('change', this.onStoreChange);
      worldStore.on('change', this.onStoreChange);
  };
@@ -25,12 +28,16 @@ class BetboxRollButtons extends Component {
  }
 
  makeBetHandler(cond){
-     console.assert(cond === '<' || cond === '>');
-     return (e) => {
+     
+    const self = this;
+    
+    console.assert(cond === '<' || cond === '>');
+
+     return function(e)  {
          console.log('Placing bet..');
 
-         chatStore.state.waitingForServer = true;
-
+         self.setState({waitingForServer: true});
+         
          const hash = betStore.state.nextHash;
          console.assert(typeof hash === 'string');
 
