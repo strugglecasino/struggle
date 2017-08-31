@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { betStore, worldStore, chatStore } from '../../../stores/Store';
 import Dispatcher from '../../../dispatcher/Dispatcher';
-import MoneyPot from '../containers/index';
 import * as helpers from '../../../utils/helpers';
 import SHA256 from 'crypto-js/sha256';
 
@@ -59,7 +58,7 @@ class BetboxRollButtons extends Component {
              payout: payoutSatoshis
          };
 
-         MoneyPot.placeSimpleDiceBet(params, {
+         this.props.MoneyPot.placeSimpleDiceBet(params, {
              success: function(bet){
                  console.log('Successfuly placed bet', bet);
 

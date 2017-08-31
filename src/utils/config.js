@@ -7,9 +7,7 @@ const config = {
   chat_uri: '//socket.moneypot.com',
   debug: isRunningLocally(),
   force_https_redirect: !isRunningLocally(),
-  house_edge: 0.01,
-  chat_buffer_size: 150,
-  bet_buffer_size: 25
+  house_edge: 0.01
 };
 
 (function() {

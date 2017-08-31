@@ -150,9 +150,9 @@
         background: #fff;
         border-top-right-radius: 0.6rem;
         border-bottom-right-radius: 0.6rem;
-        border: 0.3rem solid @gray_lite;
+        border: 3.1416px solid @gray_lite;
         text-align: center;
-        font-family: 'PT Mono', monospace;
+        font-family: @font_numeral;
         font-size: 130%;
         font-weight: 900;
         color: @accent_color_base;
@@ -187,6 +187,16 @@
                 background: spin(@accent_color_base, 200);
             }
         }
+ }
+
+ .betbox_robot_hidden {
+     display: none;
+ }
+ .betbox_robot {
+     position: relative;
+     display: flex;
+     flex-direction: row;
+     width: 100%;
  }
 
 .betbox_targets {

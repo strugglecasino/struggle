@@ -5,7 +5,7 @@ import config from '../utils/config';
 import * as helpers from '../utils/helpers';
 import io from 'socket.io-client';
 import nanoid from 'nanoid';
-import MoneyPot from '../games/dice/containers/index';
+import MoneyPot from '../games/dice/';
 const socket = io(config.chat_uri);
 const EventEmitter = require('events').EventEmitter
 
@@ -58,7 +58,7 @@ if (helpers.getHashParams().access_token) {
 /* CHATSTORE */
 
 export const chatStore = new Store('chat', {
-  messages: new CBuffer(config.chat_buffer_size),
+  messages: new CBuffer(250),
   waitingForServer: false,
   userList: {},
   showUserList: false,
@@ -112,8 +112,13 @@ export const chatStore = new Store('chat', {
     self.emitter.emit('change', self.state);
   });
 
+  Dispatcher.registerCallback('TOGGLE_BETBOT', () => {
+    console.log('betbox enabled');
+    self.state.botEnabled = !self.state.botEnabled;
+    self.emitter.emit('change', self.state);
+  })
   // user is { id: Int, uname: String, role: 'admin' | 'mod' | 'owner' | 'member' }
-  Dispatcher.registerCallback('USER_LEFT', function(user) {
+  Dispatcher.registerCallback('USER_LEFT', (user) => {
     console.log(user + ' left');
     delete self.state.userList[user.uname];
     self.emitter.emit('change', self.state);
@@ -193,16 +198,20 @@ export const betStore = new Store('bet', {
 
 export const worldStore = new Store('world', {
   isLoading: true,
-  user: undefined,
+  user: {
+    uname: 'ES2THEKAY',
+    balance: '1000'
+  },
   accessToken: access_token,
   isRefreshingUser: false,
   hotkeysEnabled: false,
+  botEnabled: false,
   chatEnabled: true,
   currTab: 'ALL_BETS',
   // TODO: Turn this into myBets or something
-  bets: new CBuffer(config.bet_buffer_size),
+  bets: new CBuffer(25),
   // TODO: Fetch list on load alongside socket subscription
-  allBets: new CBuffer(config.bet_buffer_size)
+  allBets: new CBuffer(25)
 }, function() {
 
   const self = this;

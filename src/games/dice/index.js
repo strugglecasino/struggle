@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-import { betStore, worldStore, chatStore } from '../../../stores/Store';
-import Dispatcher from '../../../dispatcher/Dispatcher';
-import Topbar from '../components/Topbar';
-import Navbar from '../components/Navbar';
-import Chatbox from './Chatbox';
-import Betbox from './Betbox';
-import BetTabsNav from './BetTabsNav';
-import BetTabs from '../components/tabs/BetTabs';
+import { betStore, worldStore, chatStore } from '../../stores/Store';
+import Dispatcher from '../../dispatcher/Dispatcher';
+import Topbar from './components/Topbar';
+import Navbar from './components/Navbar';
+import Chatbox from './containers/Chatbox';
+import Betbox from './containers/Betbox';
+import BetTabsNav from './containers/BetTabsNav';
+import BetTabs from './components/tabs/BetTabs';
 // import Preloader from '../components/Preloader';
 import $ from 'jquery';
 import _ from 'lodash';
-import config from '../../../utils/config';
+import config from '../../utils/config';
 import io from 'socket.io-client';
-// import MoneyPot from '../../../api/mpApi';
 const socket = io(config.chat_uri);
 
 export const MoneyPot = (function() {
@@ -181,7 +180,8 @@ class Dice extends Component {
                     openWithdrawPopUp={this.openWithdrawPopUp}
                 />
                 <section className="main">
-                    <Betbox />
+                    <Betbox 
+                     MoneyPot={this.MoneyPot}/>
                     <Chatbox />
                 </section>
                 <div className="tabs">

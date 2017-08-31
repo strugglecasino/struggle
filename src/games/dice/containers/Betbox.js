@@ -9,6 +9,7 @@ import BetboxWager from '../components/bet/BetboxWager';
 import BetboxMultiplier from '../components/bet/BetboxMultiplier';
 import BetboxProfit from '../components/bet/BetboxProfit';
 import BetboxRisk from '../components/bet/BetboxRisk';
+import BetboxRobot from '../components/bet/BetboxRobot';
 import Hotkeys from '../components/bet/Hotkeys';
 
 
@@ -22,7 +23,9 @@ class Betbox extends Component {
         this.onMultiplierChange = this.onMultiplierChange.bind(this);
         this.validateMultiplier = this.validateMultiplier.bind(this);
         this.toggleHotkeys = this.toggleHotkeys.bind(this);
+        this.toggleBetbot = this.toggleBetbot.bind(this);
         this.getErrorMsg = this.getErrorMsg.bind(this);
+    
     };
 
     onStoreChange(){
@@ -101,6 +104,9 @@ class Betbox extends Component {
             });
         };
     };
+    onRollsLImitChange() {
+
+    }
     
     onMultiplierChange(e) {
         const str = e.target.value;
@@ -131,7 +137,9 @@ class Betbox extends Component {
     toggleHotkeys(){
         Dispatcher.sendAction('TOGGLE_HOTKEYS');
     };
-    
+    toggleBetbot(){
+        Dispatcher.sendAction('TOGGLE_BETBOT');
+    }    
     getErrorMsg(){
         const error = betStore.state.wager.error || betStore.state.multiplier.error;
         const translateErrors = {
@@ -152,6 +160,10 @@ class Betbox extends Component {
         let betboxClass = classNames({
             'betbox': true,
             'full': !worldStore.state.chatEnabled
+        });
+        let betbotClass = classNames({
+            'betbox_robot_hidden' : true,
+            'betbox_robot' : worldStore.state.botEnabled
         });
         const error = betStore.state.wager.error || betStore.state.multiplier.error;
         const winProb = helpers.multiplierToWinProb(betStore.state.multiplier.num);
@@ -174,13 +186,24 @@ class Betbox extends Component {
 
 
                     
-                <BetboxOutcome bets={worldStore.state.bets} onChange={this.onStoreChange} />
-
-                <Hotkeys 
-                 toggleHotkeys={this.toggleHotkeys}
-                 hotkeysEnabled={worldStore.state.hotkeysEnabled} 
+                <BetboxOutcome 
+                   bets={worldStore.state.bets} 
+                   onChange={this.onStoreChange} 
                 />
 
+                <Hotkeys 
+                  toggleHotkeys={this.toggleHotkeys}
+                  hotkeysEnabled={worldStore.state.hotkeysEnabled} 
+                />
+
+                <button onClick={this.toggleBetbot}>
+                    BOT 
+                </button>
+
+                <BetboxRobot 
+                   betbotClass={betbotClass} 
+                   onRollsLImitChange={this.onRollsLImitChange}
+                />
                 <BetboxWager 
                   betStore={betStore}
                   worldStore={worldStore}
@@ -212,7 +235,9 @@ class Betbox extends Component {
                    onChange={this.onStoreChange}
                  />
 
-                <BetboxRollButtons />
+                <BetboxRollButtons 
+                  MoneyPot={this.props.MoneyPot}
+                />
 
                 
             </section>
