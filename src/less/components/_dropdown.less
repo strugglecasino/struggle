@@ -53,9 +53,17 @@
             font-weight: 500;
             cursor: pointer;
             position: relative;
-            padding: @layout_padding_lg;
+            padding-top: 0.8rem; padding-bottom: 0.8rem; padding-left: 0.5rem; padding-right: 0.5rem;
             width: 100%;
             transition: all 0.2s ease;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            i {
+                font-size:200%;
+                color: @font_gray;
+            }
             &:hover {
                 color: saturate(@accent_color_base,15);
                 background: lighten(@gray_lite, 2.5);

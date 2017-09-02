@@ -11,12 +11,7 @@ const ChatboxHeader = ({ showUserList, toggleChatUserList }) => {
         <section className="chatbox_header" >
             <button onClick={toggleChatUserList}>  
               <span> { textOptions } </span>
-              { 
-                  showUserList ? 
-                   <i className="icon-icon_eye_cross_line"> </i> 
-                   : 
-                  <i className="icon-icon_eye_line"></i>
-              }
+              <i className={ showUserList ? 'icon-icon_eye_cross_line' : 'icon-icon_eye_line'}></i>
             </button>
         </section>
     )

@@ -1,7 +1,0 @@
-.idea/
-/dist/
-node_modules/
-.*
-!.gitignore
-!.gitattributes
-!.csscomb.json

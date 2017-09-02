@@ -29,22 +29,24 @@ class Chatbox extends Component {
     onStoreChange(){
         this.forceUpdate();
     };
-    scrollChat(){
-        const node = ReactDOM.findDOMNode(this.refs.chatListRef);
-        $(node).scrollTop(node.scrollHeight);
-    };
-    onNewMessage(){
-        const node = ReactDOM.findDOMNode(this.refs.chatListRef);
-        
-        const shouldScroll = () => {
-            const distanceFromBottom = node.scrollHeight - ($(node).scrollTop() + $(node).innerHeight());
-            console.log('DistanceFromBottom', distanceFromBottom);
-            return distanceFromBottom <= 70;
+    onNewMessage() {
+        var node = ReactDOM.findDOMNode(this.refs.chatListRef);
+    
+        // Only scroll if user is within 100 pixels of last message
+        var shouldScroll = function() {
+          var distanceFromBottom = node.scrollHeight - ($(node).scrollTop() + $(node).innerHeight());
+          console.log('DistanceFromBottom:', distanceFromBottom);
+          return distanceFromBottom <= 100;
         };
+    
         if (shouldScroll()) {
-            this.scrollChat();
+          this.scrollChat();
         }
-    };
+      }
+    scrollChat() {
+        var node = ReactDOM.findDOMNode(this.refs.chatListRef);
+        $(node).scrollTop(node.scrollHeight);
+    }
     componentDidMount(){
         chatStore.on('change', this.onStoreChange);
         chatStore.on('new_message', this.onNewMessage);
@@ -62,6 +64,7 @@ class Chatbox extends Component {
     };
     
     onSend(){
+        const self = this;
         Dispatcher.sendAction('SEND_MESSAGE', this.state.text);
         this.setState({text: ''});
     }
@@ -75,7 +78,7 @@ class Chatbox extends Component {
     }
     onFocus() {
         if(worldStore.state.hotkeysEnabled) {
-          Dispatcher.sendAction('DISABLE_HOTKEYS');
+          Dispatcher.sendAction('DISABLE_HOTKEYS', null);
         };
     }
     toggleChatUserList(){
@@ -139,6 +142,6 @@ class Chatbox extends Component {
             </section>
         );
     }
-}
+};
 
 export default Chatbox;

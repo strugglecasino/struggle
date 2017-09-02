@@ -12,7 +12,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 import config from '../../utils/config';
 import io from 'socket.io-client';
-const socket = io(config.chat_uri);
+
 
 export const MoneyPot = (function() {
   
@@ -201,6 +201,7 @@ const connectToChatServer = () => {
   console.log('Connecting to chat server. AccessToken:',
      worldStore.state.accessToken);
 
+  const socket = io(config.chat_uri);
   socket.on('connect', function() {
     console.log('Connected');
 
